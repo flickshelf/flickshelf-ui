@@ -1,3 +1,5 @@
+import style from './Form.module.css'
+
 export function Form() {
     function saveFilledValues() {}
 
