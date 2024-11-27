@@ -29,6 +29,7 @@ export function Header() {
 							<LogOutOutline
 								title={'test'}
 								width="32px"
+								height="32px"
 								color
 							/>
 						</button>
