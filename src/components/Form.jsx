@@ -8,7 +8,7 @@ export function Form() {
     }
 
     return (
-        <form id="form">
+        <form id="form" className={style.form}>
             <div className={style.serieCreationForm} id="serie-form">
                 <h2 className={style.title}>Create your serie</h2>
                 <label htmlFor="serie-title">Title</label>

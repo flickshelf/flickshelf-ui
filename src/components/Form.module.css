@@ -1,3 +1,8 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
 .serieCreationForm {
     display: flex;
     flex-direction: column;
@@ -7,6 +12,8 @@
     background-color: white;
     font-size: 15px;
     margin: 20px 0;
+
+    align-self: center;
 }
 
 .serieCreationForm label {
