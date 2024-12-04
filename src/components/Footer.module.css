@@ -19,13 +19,11 @@
     flex-direction: row;
     align-items: center;
     gap: 2px;
-    padding: 2px;
     padding: 2px 110px; 
 }
 
-.darkFooter img {
-    width: 20px;
-    height: 20px;
+.mailIcon {
+    align-self: center;
 }
 
 .darkFooter a {
@@ -65,7 +63,8 @@
     height: 24px;
 }
 
-.facebookLink {
-    width: 23.3px;
-    height: 23.3px;
+.rightItemsIcons {
+    display: flex;
+    gap: 4px;
 }
+

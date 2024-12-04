@@ -1,5 +1,6 @@
 import style from '../components/Footer.module.css'
-import { LogoFacebook, LogoTwitter, LogoInstagram } from 'react-ionicons'
+import { LogoFacebook, LogoTwitter, LogoInstagram, MailOutline } from 'react-ionicons'
+
 
 export function Footer() {
     return (
@@ -11,23 +12,23 @@ export function Footer() {
                     </div>
                     <div className={style.rightItems}>
                         <p>Follow us</p>
-                        <div>
+                        <div className={style.rightItemsIcons}>
                             <a href="#">
                                 <LogoInstagram
-                                    width="23.3px"
-                                    height="23.3px"
+                                    width="24px"
+                                    height="24px"
                                 />
                             </a>
                             <a href="#">
                                 <LogoTwitter
-                                    width="23.3px"
-                                    height="23.3px"
+                                    width="24px"
+                                    height="24px"
                                 />
                             </a>
                             <a href="" target="_blank">
                                 <LogoFacebook 
-                                    width="23.3px"
-                                    height="23.3px"
+                                    width="24px"
+                                    height="24px"
                                 />
                             </a>
                             
@@ -37,7 +38,11 @@ export function Footer() {
             </div>
             <div className={style.darkBlueFooter}>
                 <div className={style.darkFooter}>
-                    <img src="png/email-icon.webp" alt="Email icon" />
+                    <MailOutline
+                        className={style.mailIcon}
+                        width="20px"
+                        height="20px"
+                    />
                     <p><a href="mailto:contact@seriescrud.com.br">contact@flickshelf.com</a></p>
                 </div>
             </div>
