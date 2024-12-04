@@ -35,6 +35,10 @@
     text-decoration: underline;
 }
 
+.darkFooter span {
+    padding-top: 2px;
+}
+
 .socialItems {
     display: flex;
     justify-content: space-between;
