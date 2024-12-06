@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-import style from './Form.module.css'
+import style from './Form.module.css';
+
+import axios from 'axios';
 
 export function Form() {
     const [serieTitle, setSerieTitle] = useState('')
@@ -30,30 +32,30 @@ export function Form() {
 
         // disableButton()
 
-        // axios.post('https://api.flickshelf.com/series', {
-        //     ownerId,
-        //     serieTitle: serieTitle.value,
-        //     serieGenre: serieGenre.value,
-        //     serieSeasons: serieSeasons.value,
-        //     serieReleaseYear: serieReleaseYear.value,
-        //     serieSynopsis: serieSynopsis.value,
-        //     })
-        //     .then(() => {
-        //     alert(`Serie ${serieTitle.value} created successfully!`)
-        //     localStorage.removeItem('formValues')
+        axios.post('https://api.flickshelf.com/series', {
+            ownerId: 2,
+            serieTitle,
+            serieGenre,
+            serieSeasons,
+            serieReleaseYear,
+            serieSynopsis,
+            })
+            .then(() => {
+            alert(`Serie ${serieTitle} created successfully!`)
+            // localStorage.removeItem('formValues')
 
-        //     serieTitle.value = ''
-        //     serieGenre.value = ''
-        //     serieSeasons.value = ''
-        //     serieReleaseYear.value = ''
-        //     serieSynopsis.value = ''
-        //     })
-        //     .catch(() => {
-        //     alert('There was an error. Try again.');
-        //     })
-        //     .finally(() => {
-        //     enableButton()
-        //     })
+            // serieTitle = ''
+            // serieGenre = ''
+            // serieSeasons = ''
+            // serieReleaseYear = ''
+            // serieSynopsis = ''
+            })
+            .catch(() => {
+            alert('There was an error. Try again.');
+            })
+            // .finally(() => {
+            // enableButton()
+            // })
     }
 
     const onChangeTitle = (event) => {
