@@ -48,3 +48,13 @@
     height: 30px;
 }
 
+.createButton.disabled {
+    cursor: not-allowed;
+    background-color: grey;
+    color: white;
+}
+
+.buttonLoader {
+    height: 20px;
+    width: 20px;
+}

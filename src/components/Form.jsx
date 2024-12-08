@@ -4,7 +4,11 @@ import style from './Form.module.css';
 
 import axios from 'axios';
 
+import spinner from '../assets/white-button-spinner.gif'
+
 export function Form() {
+    const [isLoading, setIsLoading] = useState(false)
+
     const [serieTitle, setSerieTitle] = useState('')
     const [serieGenre, setSerieGenre] = useState('')
     const [serieSeasons, setSerieSeasons] = useState(0)
@@ -14,48 +18,45 @@ export function Form() {
     function saveFilledValues() {}
 
     const create = () => {
-        console.log(serieTitle, serieGenre, serieSeasons, serieReleaseYear, serieSynopsis)
-
-        // -------------------------------
-        
-        // if (
-        //     serieTitle.value === "" 
-        //     || serieGenre.value === "" 
-        //     || serieSeasons.value === "" 
-        //     || serieReleaseYear.value === "" 
-        //     || serieSynopsis.value === ""
-        // ) {
-        //     return alert("All informations needs to be filled!")
-        // } 
+        if (
+            serieTitle === "" 
+            || serieGenre === "" 
+            || serieSeasons === "" 
+            || serieReleaseYear === "" 
+            || serieSynopsis === ""
+        ) {
+            return alert("All informations needs to be filled!")
+        } 
 
         // const ownerId = localStorage.getItem('loggedUserId')
 
-        // disableButton()
+        setIsLoading(true)
 
         axios.post('https://api.flickshelf.com/series', {
-            ownerId: 2,
-            serieTitle,
-            serieGenre,
-            serieSeasons,
-            serieReleaseYear,
-            serieSynopsis,
+                ownerId: 2,
+                serieTitle,
+                serieGenre,
+                serieSeasons,
+                serieReleaseYear,
+                serieSynopsis,
             })
             .then(() => {
-            alert(`Serie ${serieTitle} created successfully!`)
-            // localStorage.removeItem('formValues')
+                alert(`Serie ${serieTitle} created successfully!`)
 
-            // serieTitle = ''
-            // serieGenre = ''
-            // serieSeasons = ''
-            // serieReleaseYear = ''
-            // serieSynopsis = ''
+                // localStorage.removeItem('formValues')
+
+                setSerieTitle('')
+                setSerieGenre('')
+                setSerieSeasons('')
+                setSerieReleaseYear('')
+                setSerieSynopsis('')
             })
             .catch(() => {
-            alert('There was an error. Try again.');
+                alert('There was an error. Try again.');
             })
-            // .finally(() => {
-            // enableButton()
-            // })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     const onChangeTitle = (event) => {
@@ -138,7 +139,9 @@ export function Form() {
                     onBlur={saveFilledValues()}
                 ></textarea>
 
-                <button className={style.createButton} type="button" onClick={create}>Create</button>
+                <button className={`${style.createButton} ${isLoading ? style.disabled : ''}`} type="button" onClick={create}>
+                    { isLoading ? <img src={spinner} className={style.buttonLoader} /> : 'Create' }
+                </button>
             </div>
         </form>
     )
