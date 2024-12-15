@@ -9,7 +9,9 @@ export function Header() {
 
 	const openListMoviesPage = () => {}
 
-	const openListSeriesPage = () => {}
+	const openListSeriesPage = () => {
+		
+	}
 
 	const logout = () => {}
 
