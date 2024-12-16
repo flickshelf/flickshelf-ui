@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { LogOutOutline } from 'react-ionicons';
 
 import style from "./Header.module.css"
@@ -5,12 +7,16 @@ import style from "./Header.module.css"
 import logo from '../assets/temp-logo.png'
 
 export function Header() {
-	const openRegisterPage = () => {}
+	const navigate = useNavigate()
+
+	const openRegisterPage = () => {
+		navigate("/")
+	}
 
 	const openListMoviesPage = () => {}
 
 	const openListSeriesPage = () => {
-		
+		navigate("/list")
 	}
 
 	const logout = () => {}
