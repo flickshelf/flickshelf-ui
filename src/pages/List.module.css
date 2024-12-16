@@ -1,0 +1,116 @@
+.websiteContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 0 32px;    
+}
+
+.serieItem {
+    border: 4px double #416289;
+    border-radius: 12px;
+    background-color: white;
+    padding: 4px 8px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.serieTitle {
+    text-align: center;
+}
+
+.synopsisDiv {
+    height: 172px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.synopsisDiv p {
+    text-align: justify;
+}
+
+.cardButtons {
+    display: flex;
+    justify-content: end;
+    padding-right: 16px;
+    gap: 4px;
+}
+
+.cardButtons ion-icon {
+    color: #7d8287;
+    cursor: pointer;
+}
+
+.cardButtons ion-icon:hover {
+    color: black;
+}
+
+.emptyState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+.serieItem.loading {
+    justify-content: center;
+    align-items: center;
+    opacity: 0.33;
+}
+
+.loadingSpinner {
+    width: 64px;
+    height: 64px;
+}
+
+
+#emptyStateContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+} 
+
+.emptyStateText {
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .emptyStateImage {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+
+/* Edit modal */
+
+.editSerieModal {
+    height: 506px;
+    width: 538px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    margin: calc(50vh - 224px) calc(50vw - 269px);
+    border: 4px double #416289;
+}
+
+.editModalCloseButton {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.editSerieModal iframe {
+    width: 100%;
+    height: 95%;
+    position: absolute;
+    bottom: 0;
+    border: none;   
+}
