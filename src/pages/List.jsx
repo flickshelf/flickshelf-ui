@@ -1,6 +1,20 @@
 import style from './List.module.css';
 
+import axios from 'axios';
+
+import emptyState from '../assets/empty-state.png';
+
 export function List() {
+    const getSeries = () => {
+        const series = axios.get('https://api.flickshelf.com/1/series')
+
+        console.log(series)
+
+        return series
+    }
+
+    getSeries()
+
     const openRegisterPage = () => {}
 
     const openListMoviesPage = () => {}
@@ -26,10 +40,10 @@ export function List() {
                 </div>
             </header>
 
-            <div id="empty-state-container">
+            <div className={style.emptyStateContainer}>
                 <p className={style.emptyStateText}>No series found. Add your first serie!</p>
                 <div className={style.emptyStateImage}>
-                    <img src="../png/empty-state.png" alt="Empty state image" width="400px" />
+                    <img src={emptyState} alt="Empty state image" width="400px" />
                 </div>
             </div>
         
