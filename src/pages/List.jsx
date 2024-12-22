@@ -4,18 +4,24 @@ import axios from 'axios';
 
 import emptyState from '../assets/empty-state.png';
 
-import {Header} from '../components/Header.jsx';
+import { useState, useEffect } from 'react';
+
+import { Header } from '../components/Header.jsx';
+import { Card } from '../components/Card.jsx';
 
 export function List() {
-    const getSeries = () => {
-        const series = axios.get('https://api.flickshelf.com/1/series')
+    const [series, setSeries] = useState([]);
 
-        return series
+    const getSeries = () => {
+        return axios.get('https://api.flickshelf.com/2/series')
     }
 
-    getSeries().then((series) =>{
-        console.log(series)
-    })
+    useEffect(() => {
+        getSeries()
+            .then((returnedSeries) => {
+                setSeries(returnedSeries.data)
+            })
+    }, [])
 
     const openRegisterPage = () => {}
 
@@ -34,7 +40,9 @@ export function List() {
                 </div>
             </div>
         
-            <div className={style.websiteContent} id="list-series-container"></div>
+            <div className={style.websiteContent} id="list-series-container">
+                <Card serie={series[0]} />
+            </div>
         </>
     )
 }
