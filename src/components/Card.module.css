@@ -1,0 +1,14 @@
+.serieItem {
+    border: 4px double #416289;
+    border-radius: 12px;
+    background-color: white;
+    padding: 4px 8px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.serieTitle {
+    text-align: center;
+}
