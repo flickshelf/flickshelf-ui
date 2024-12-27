@@ -33,15 +33,17 @@ export function List() {
         <>
             <Header/>
 
-            <div className={style.emptyStateContainer}>
+            { !series.length && <div className={style.emptyStateContainer}>
                 <p className={style.emptyStateText}>No series found. Add your first serie!</p>
                 <div className={style.emptyStateImage}>
                     <img src={emptyState} alt="Empty state image" width="400px" />
                 </div>
-            </div>
+            </div>}
         
             <div className={style.websiteContent} id="list-series-container">
-                <Card serie={series[0]} />
+                { series.map((serie) => {
+                   return (<Card serie={serie} />)
+                }) }
             </div>
         </>
     )

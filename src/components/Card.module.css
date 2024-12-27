@@ -12,3 +12,19 @@
 .serieTitle {
     text-align: center;
 }
+
+.cardButtons {
+    display: flex;
+    justify-content: end;
+    padding-right: 16px;
+    gap: 4px;
+}
+
+.cardButtons ion-icon {
+    color: #7d8287;
+    cursor: pointer;
+}
+
+.cardButtons ion-icon:hover {
+    color: black;
+}
