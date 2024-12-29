@@ -13,6 +13,16 @@
     text-align: center;
 }
 
+.synopsisDiv {
+    height: 172px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.synopsisDiv p {
+    text-align: justify;
+}
+
 .cardButtons {
     display: flex;
     justify-content: end;
@@ -20,9 +30,12 @@
     gap: 4px;
 }
 
+.cardButtons * {
+    cursor: pointer;
+}
+
 .cardButtons ion-icon {
     color: #7d8287;
-    cursor: pointer;
 }
 
 .cardButtons ion-icon:hover {
