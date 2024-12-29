@@ -3,7 +3,7 @@ import style from './Card.module.css';
 import { CreateOutline, Trash} from 'react-ionicons';
 
 export function Card(props) {
-    const { serie } = props;
+    const { serie, onUpdate, onDelete } = props;
 
     function handleSerieGenre(genre) {
         let genreToDisplay = ''
@@ -40,24 +40,24 @@ export function Card(props) {
             <p>Seasons: {serie.seasons}</p>
             <p>Release year: {serie.release_year}</p>
 
-            <div className="synopsis-div">
+            <div className={style.synopsisDiv}>
                 <p>Synopsis: {serie.synopsis}</p>
             </div>
 
             <div className={style.cardButtons}>
-                {/* <ion-icon name="create-outline" onclick="handleEditClick('${serie.id}')"></ion-icon> */}
-                {/* <ion-icon name="trash" onclick="handleTrashClick('${serie.id}')"></ion-icon> */}
                 <CreateOutline
                     title={'Update'}
                     width="16px"
                     height="16px"
                     color
+                    onClick={() => onUpdate(serie.id)}
 				/>
                 <Trash
                     title={'Delete'}
                     width="16px"
                     height="16px"
                     color
+                    onClick={() => onDelete(serie.id)}
 				/>
             </div>
         </div>

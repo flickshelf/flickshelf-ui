@@ -29,6 +29,14 @@ export function List() {
 
     const openListSeriesPage = () => {}
 
+    function handleEditClick(serieId) {
+        console.log('editing serie ' + serieId)
+    }
+
+    function handleTrashClick(serieId) {
+        console.log('deleting serie ' + serieId)
+    }
+
     return (
         <>
             <Header/>
@@ -42,7 +50,14 @@ export function List() {
         
             <div className={style.websiteContent} id="list-series-container">
                 { series.map((serie) => {
-                   return (<Card serie={serie} />)
+                    return (
+                        <Card 
+                            key={serie.id} 
+                            serie={serie}
+                            onUpdate={handleEditClick}
+                            onDelete={handleTrashClick}
+                        />
+                    )
                 }) }
             </div>
         </>
