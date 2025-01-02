@@ -11,6 +11,7 @@ import { Card } from '../components/Card.jsx';
 
 export function List() {
     const [series, setSeries] = useState([]);
+    const [isLoading, setIsLoading] = useState({ active: false, cardId: undefined });
 
     const getSeries = () => {
         return axios.get('https://api.flickshelf.com/2/series')
@@ -35,6 +36,23 @@ export function List() {
 
     function handleTrashClick(serieId) {
         console.log('deleting serie ' + serieId)
+        const hasConfirm = confirm('Are you sure you want to delete?')
+
+        if (hasConfirm) {
+            setIsLoading({ active: true, cardId: serieId })
+
+            axios.delete(`https://api.flickshelf.com/serie/${serieId}`)
+                .then(() => {
+                    getSeries().then((returnedSeries) => {
+                        setSeries(returnedSeries.data)
+                    }).finally(() => {
+                        setIsLoading({ active: false, cardId: serieId })
+                    })
+                }).catch(() => {
+                    alert('There was an error while deleting this serie. Try again.')
+                    setIsLoading({ active: false, cardId: serieId })
+                })
+        }
     }
 
     return (
@@ -56,6 +74,7 @@ export function List() {
                             serie={serie}
                             onUpdate={handleEditClick}
                             onDelete={handleTrashClick}
+                            isLoading={isLoading}
                         />
                     )
                 }) }
