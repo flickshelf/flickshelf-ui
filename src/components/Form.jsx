@@ -11,8 +11,8 @@ export function Form() {
 
     const [serieTitle, setSerieTitle] = useState('')
     const [serieGenre, setSerieGenre] = useState('')
-    const [serieSeasons, setSerieSeasons] = useState(0)
-    const [serieReleaseYear, setSerieReleaseYear] = useState(0)
+    const [serieSeasons, setSerieSeasons] = useState()
+    const [serieReleaseYear, setSerieReleaseYear] = useState()
     const [serieSynopsis, setSerieSynopsis] = useState('')
 
     function saveFilledValues() {}
