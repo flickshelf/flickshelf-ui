@@ -41,3 +41,15 @@
 .cardButtons ion-icon:hover {
     color: black;
 }
+
+.loadingState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.loadingSpinner {
+    width: 64px;
+    height: 64px;
+}

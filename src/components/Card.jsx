@@ -2,8 +2,10 @@ import style from './Card.module.css';
 
 import { CreateOutline, Trash} from 'react-ionicons';
 
+import loadingSpinner from '../assets/spinner.gif';
+
 export function Card(props) {
-    const { serie, onUpdate, onDelete } = props;
+    const { serie, onUpdate, onDelete, isLoading } = props;
 
     function handleSerieGenre(genre) {
         let genreToDisplay = ''
@@ -32,6 +34,16 @@ export function Card(props) {
         return genreToDisplay
     }
 
+    if (isLoading.active && isLoading.cardId === serie.id) {
+      return (
+        <div className={style.serieItem}>
+          <div className={style.loadingState}>
+            <img src={loadingSpinner} className={style.loadingSpinner}/>
+          </div>
+        </div>
+      )
+    }
+
     return (
         <div className={style.serieItem}>
             <h3 className={style.serieTitle}>{serie.title}</h3>
@@ -45,20 +57,20 @@ export function Card(props) {
             </div>
 
             <div className={style.cardButtons}>
-                <CreateOutline
-                    title={'Update'}
-                    width="16px"
-                    height="16px"
-                    color
-                    onClick={() => onUpdate(serie.id)}
-				/>
-                <Trash
-                    title={'Delete'}
-                    width="16px"
-                    height="16px"
-                    color
-                    onClick={() => onDelete(serie.id)}
-				/>
+              <CreateOutline
+                title={'Update'}
+                width="16px"
+                height="16px"
+                color
+                onClick={() => onUpdate(serie.id)}
+              />
+              <Trash
+                title={'Delete'}
+                width="16px"
+                height="16px"
+                color
+                onClick={() => onDelete(serie.id)}
+              />
             </div>
         </div>
     )
