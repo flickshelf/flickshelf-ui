@@ -81,12 +81,12 @@
 /* Edit modal */
 
 .editSerieModal {
-    height: 506px;
-    width: 538px;
+    height: 560px;
+    width: 560px;
     background-color: white;
     position: absolute;
     top: 0;
-    margin: calc(50vh - 224px) calc(50vw - 269px);
+    margin: calc(50vh - 280px) calc(50vw - 280px);
     border: 4px double #416289;
 }
 

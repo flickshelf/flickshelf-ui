@@ -14,6 +14,7 @@ import { Card } from '../components/Card.jsx';
 export function List() {
     const [series, setSeries] = useState([]);
     const [isLoading, setIsLoading] = useState({ active: false, cardId: undefined });
+    const [isModalOpen, setIsModalOpen] = useState({ active: false, serieId: undefined });
 
     const getSeries = () => {
         return axios.get('https://api.flickshelf.com/2/series')
@@ -37,7 +38,8 @@ export function List() {
     const openListSeriesPage = () => {}
 
     function handleEditClick(serieId) {
-        console.log('editing serie ' + serieId)
+        setSeries([])
+        setIsModalOpen({ active: true, serieId });
     }
 
     function handleTrashClick(serieId) {
@@ -61,6 +63,10 @@ export function List() {
         }
     }
 
+    const modalContent = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+        ? 'http://localhost:5173/update-serie?id=123' 
+        : 'https://flickshelf.com/update-serie'
+
     return (
         <>
             <Header/>
@@ -76,7 +82,7 @@ export function List() {
                 </div>
             </div>}
         
-            <div className={style.websiteContent} id="list-series-container">
+            <div className={style.websiteContent}>
                 { series.map((serie) => {
                     return (
                         <Card 
@@ -89,6 +95,10 @@ export function List() {
                     )
                 }) }
             </div>
+
+            { isModalOpen.active && <div className={style.editSerieModal}>
+                <iframe src={modalContent} name={isModalOpen.serieId}></iframe>
+            </div> }
         </>
     )
 }
