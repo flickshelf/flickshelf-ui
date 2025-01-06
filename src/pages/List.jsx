@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import emptyState from '../assets/empty-state.png';
 
+import loadingSpinner from '../assets/spinner.gif';
+
 import { useState, useEffect } from 'react';
 
 import { Header } from '../components/Header.jsx';
@@ -18,10 +20,14 @@ export function List() {
     }
 
     useEffect(() => {
+        setIsLoading({active: true})
+
         getSeries()
             .then((returnedSeries) => {
                 setSeries(returnedSeries.data)
-            })
+            }).finally(() => {
+                setIsLoading({active: false})
+            }) 
     }, [])
 
     const openRegisterPage = () => {}
@@ -59,7 +65,11 @@ export function List() {
         <>
             <Header/>
 
-            { !series.length && <div className={style.emptyStateContainer}>
+            { isLoading.active && <div className={style.emptyState}>
+                <img src={loadingSpinner}/>
+            </div>}
+
+            { !isLoading.active && !series.length && <div className={style.emptyStateContainer}>
                 <p className={style.emptyStateText}>No series found. Add your first serie!</p>
                 <div className={style.emptyStateImage}>
                     <img src={emptyState} alt="Empty state image" width="400px" />
