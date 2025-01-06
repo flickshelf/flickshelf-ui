@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import style from './Form.module.css';
 
@@ -7,6 +7,7 @@ import axios from 'axios';
 import spinner from '../assets/white-button-spinner.gif'
 
 export function Form() {
+    const [serie, setSerie] = useState({})
     const [isLoading, setIsLoading] = useState(false)
 
     const [serieTitle, setSerieTitle] = useState('')
@@ -14,6 +15,23 @@ export function Form() {
     const [serieSeasons, setSerieSeasons] = useState()
     const [serieReleaseYear, setSerieReleaseYear] = useState()
     const [serieSynopsis, setSerieSynopsis] = useState('')
+
+    const serieId = window.name;
+
+    async function getSerieById(serieId) {
+        const serie = await axios.get(`https://api.flickshelf.com/series/${serieId}`)
+        return serie;
+    }
+
+    useEffect(() => {
+        if (serieId) {
+            getSerieById(serieId)
+                .then((serie) => {
+                    console.log(serie.data)
+                    setSerie(serie.data)
+                })
+        }
+    }, [])
 
     function saveFilledValues() {}
 
