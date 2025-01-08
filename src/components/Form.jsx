@@ -6,14 +6,18 @@ import axios from 'axios';
 
 import spinner from '../assets/white-button-spinner.gif'
 
-export function Form() {
+const api = 'https://api.flickshelf.com';
+
+export function Form(props) {
+    const { isCreating = true } = props;
+
     const serieFormat = {
         title: '',
         genre: '',
         seasons: '',
         release_year: '',
-        synopsis: ''
-    }
+        synopsis: '',
+    };
 
     const [serie, setSerie] = useState(serieFormat)
     const [isLoading, setIsLoading] = useState(false)
@@ -26,8 +30,13 @@ export function Form() {
 
     const serieId = window.name;
 
+    const translations = {
+        title: isCreating ? "Create your serie" : "Update serie",
+        button: isCreating ? 'Create' : 'Update',
+    }
+
     async function getSerieById(serieId) {
-        const serie = await axios.get(`https://api.flickshelf.com/series/${serieId}`)
+        const serie = await axios.get(`${api}/series/${serieId}`)
         return serie;
     }
 
@@ -35,7 +44,6 @@ export function Form() {
         if (serieId) {
             getSerieById(serieId)
                 .then((serie) => {
-                    console.log(serie.data)
                     setSerie(serie.data[0])
                 })
         }
@@ -58,7 +66,7 @@ export function Form() {
 
         setIsLoading(true)
 
-        axios.post('https://api.flickshelf.com/series', {
+        axios.post(`${api}/series`, {
                 ownerId: 2,
                 serieTitle,
                 serieGenre,
@@ -83,6 +91,20 @@ export function Form() {
             .finally(() => {
                 setIsLoading(false)
             })
+    }
+
+    const update = () => {
+        axios.put(`${api}/serie/${serieId}`, {
+            serieTitle: serieTitle || serie.title,
+            serieGenre: serieGenre || serie.genre, 
+            serieSeasons: serieSeasons || serie.seasons, 
+            serieReleaseYear: serieReleaseYear || serie.release_year, 
+            serieSynopsis: serieSynopsis || serie.synopsis,
+        }).then(() => {
+            alert('Success!')
+        }).catch((err) => {
+            console.error(err)
+        })
     }
 
     const onChangeTitle = (event) => {
@@ -113,7 +135,7 @@ export function Form() {
     return (
         <form id="form" className={style.form}>
             <div className={style.serieCreationForm} id="serie-form">
-                <h2 className={style.title}>Create your serie</h2>
+                <h2 className={style.title}>{translations.title}</h2>
                 <label htmlFor="serie-title">Title</label>
                 <input 
                     type="text" 
@@ -165,8 +187,8 @@ export function Form() {
                     onBlur={saveFilledValues()}
                 ></textarea>
 
-                <button className={`${style.createButton} ${isLoading ? style.disabled : ''}`} type="button" onClick={create}>
-                    { isLoading ? <img src={spinner} className={style.buttonLoader} /> : 'Create' }
+                <button className={`${style.createButton} ${isLoading ? style.disabled : ''}`} type="button" onClick={isCreating ? create : update}>
+                    { isLoading ? <img src={spinner} className={style.buttonLoader} /> : translations.button }
                 </button>
             </div>
         </form>
