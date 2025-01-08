@@ -7,7 +7,15 @@ import axios from 'axios';
 import spinner from '../assets/white-button-spinner.gif'
 
 export function Form() {
-    const [serie, setSerie] = useState({})
+    const serieFormat = {
+        title: '',
+        genre: '',
+        seasons: '',
+        release_year: '',
+        synopsis: ''
+    }
+
+    const [serie, setSerie] = useState(serieFormat)
     const [isLoading, setIsLoading] = useState(false)
 
     const [serieTitle, setSerieTitle] = useState('')
@@ -28,7 +36,7 @@ export function Form() {
             getSerieById(serieId)
                 .then((serie) => {
                     console.log(serie.data)
-                    setSerie(serie.data)
+                    setSerie(serie.data[0])
                 })
         }
     }, [])
@@ -109,14 +117,14 @@ export function Form() {
                 <label htmlFor="serie-title">Title</label>
                 <input 
                     type="text" 
-                    value={serieTitle}
+                    value={serieTitle || serie.title}
                     onChange={onChangeTitle}
                     placeholder="Type series title..."
                     onBlur={saveFilledValues()}
                 />
                 
                 <label htmlFor="serie-genre">Genre</label>
-                <select value={serieGenre} onChange={onChangeSerieGenre}>
+                <select value={serieGenre || serie.genre} onChange={onChangeSerieGenre}>
                     <option value="">Select genre</option>
                     <option value="comedy">Comedy</option>
                     <option value="sitcom">Sitcom</option>
@@ -128,7 +136,7 @@ export function Form() {
                 <label htmlFor="serie-seasons">Seasons</label>
                 <input 
                     type="number" 
-                    value={serieSeasons}
+                    value={serieSeasons || serie.seasons}
                     onChange={onChangeSeasons}
                     placeholder="Total seasons number"
                     onBlur={saveFilledValues()}
@@ -139,7 +147,7 @@ export function Form() {
                 <label htmlFor="serie-release-year">Release year</label>
                 <input 
                     type="number" 
-                    value={serieReleaseYear}
+                    value={serieReleaseYear || serie.release_year}
                     onChange={onChangeReleaseYear}
                     placeholder="Serie release year"
                     onBlur={saveFilledValues()}
@@ -151,7 +159,7 @@ export function Form() {
                 <textarea 
                     id="serie-synopsis" 
                     name="Synopsis" 
-                    value={serieSynopsis}
+                    value={serieSynopsis || serie.synopsis}
                     onChange={onChangeSerieSynopsis}
                     placeholder="Type serie synopsis..."
                     onBlur={saveFilledValues()}
