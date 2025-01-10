@@ -11,21 +11,12 @@ const api = 'https://api.flickshelf.com';
 export function Form(props) {
     const { isCreating = true } = props;
 
-    const serieFormat = {
-        title: '',
-        genre: '',
-        seasons: '',
-        release_year: '',
-        synopsis: '',
-    };
-
-    const [serie, setSerie] = useState(serieFormat)
     const [isLoading, setIsLoading] = useState(false)
 
     const [serieTitle, setSerieTitle] = useState('')
     const [serieGenre, setSerieGenre] = useState('')
-    const [serieSeasons, setSerieSeasons] = useState()
-    const [serieReleaseYear, setSerieReleaseYear] = useState()
+    const [serieSeasons, setSerieSeasons] = useState('')
+    const [serieReleaseYear, setSerieReleaseYear] = useState('')
     const [serieSynopsis, setSerieSynopsis] = useState('')
 
     const serieId = window.name;
@@ -43,8 +34,14 @@ export function Form(props) {
     useEffect(() => {
         if (serieId) {
             getSerieById(serieId)
-                .then((serie) => {
-                    setSerie(serie.data[0])
+                .then((returnedSerie) => {
+                    const serie = returnedSerie.data[0]
+
+                    setSerieTitle(serie.title)
+                    setSerieGenre(serie.genre)
+                    setSerieSeasons(serie.seasons)
+                    setSerieReleaseYear(serie.release_year)
+                    setSerieSynopsis(serie.synopsis)
                 })
         }
     }, [])
@@ -95,16 +92,22 @@ export function Form(props) {
 
     const update = () => {
         axios.put(`${api}/serie/${serieId}`, {
-            serieTitle: serieTitle || serie.title,
-            serieGenre: serieGenre || serie.genre, 
-            serieSeasons: serieSeasons || serie.seasons, 
-            serieReleaseYear: serieReleaseYear || serie.release_year, 
-            serieSynopsis: serieSynopsis || serie.synopsis,
+            serieTitle,
+            serieGenre, 
+            serieSeasons, 
+            serieReleaseYear, 
+            serieSynopsis,
         }).then(() => {
-            alert('Success!')
-        }).catch((err) => {
-            console.error(err)
+            alert(`Serie ${serieTitle} updated successfully!`)
+
+            handleUpdate()
+        }).catch(() => {
+            alert('There was an error while updating. Try again.')
         })
+    }
+
+    function handleUpdate() {
+        parent.location.reload()
     }
 
     const onChangeTitle = (event) => {
@@ -139,14 +142,14 @@ export function Form(props) {
                 <label htmlFor="serie-title">Title</label>
                 <input 
                     type="text" 
-                    value={serieTitle || serie.title}
+                    value={serieTitle}
                     onChange={onChangeTitle}
                     placeholder="Type series title..."
                     onBlur={saveFilledValues()}
                 />
                 
                 <label htmlFor="serie-genre">Genre</label>
-                <select value={serieGenre || serie.genre} onChange={onChangeSerieGenre}>
+                <select value={serieGenre} onChange={onChangeSerieGenre}>
                     <option value="">Select genre</option>
                     <option value="comedy">Comedy</option>
                     <option value="sitcom">Sitcom</option>
@@ -158,7 +161,7 @@ export function Form(props) {
                 <label htmlFor="serie-seasons">Seasons</label>
                 <input 
                     type="number" 
-                    value={serieSeasons || serie.seasons}
+                    value={serieSeasons}
                     onChange={onChangeSeasons}
                     placeholder="Total seasons number"
                     onBlur={saveFilledValues()}
@@ -169,7 +172,7 @@ export function Form(props) {
                 <label htmlFor="serie-release-year">Release year</label>
                 <input 
                     type="number" 
-                    value={serieReleaseYear || serie.release_year}
+                    value={serieReleaseYear}
                     onChange={onChangeReleaseYear}
                     placeholder="Serie release year"
                     onBlur={saveFilledValues()}
@@ -181,7 +184,7 @@ export function Form(props) {
                 <textarea 
                     id="serie-synopsis" 
                     name="Synopsis" 
-                    value={serieSynopsis || serie.synopsis}
+                    value={serieSynopsis}
                     onChange={onChangeSerieSynopsis}
                     placeholder="Type serie synopsis..."
                     onBlur={saveFilledValues()}
