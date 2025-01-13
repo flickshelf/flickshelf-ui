@@ -36,7 +36,6 @@ export function List() {
     useEffect(() => {
         handleGetSeries()
     }, [])
-    
 
     const openRegisterPage = () => {}
 
@@ -109,16 +108,17 @@ export function List() {
             </div>
 
             { isModalOpen.active && <div className={style.editSerieModal}>
-                <button className={style.editModalCloseButton}>
-                    <CloseOutline
-                        title={'Close modal'}
-                        width="16px"
-                        height="16px"
-                        color
-                        onClick={() => closeEditSerieModal()}
-                    />
-                </button>
-
+                <div className={style.modalHeader}>
+                    <button className={style.editModalCloseButton}>
+                        <CloseOutline
+                            title={'Close modal'}
+                            width="16px"
+                            height="16px"
+                            color
+                            onClick={() => closeEditSerieModal()}
+                        />
+                    </button>
+                    </div>
                 <iframe src={modalContent} name={isModalOpen.serieId}></iframe>
             </div> }
         </>

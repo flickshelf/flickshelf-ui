@@ -137,7 +137,7 @@ export function Form(props) {
 
     return (
         <form id="form" className={style.form}>
-            <div className={style.serieCreationForm} id="serie-form">
+            <div className={`${style.serieCreationForm} ${isCreating ? '' : style.update}`} id="serie-form">
                 <h2 className={style.title}>{translations.title}</h2>
                 <label htmlFor="serie-title">Title</label>
                 <input 

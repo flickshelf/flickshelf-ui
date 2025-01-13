@@ -83,20 +83,26 @@
 .editSerieModal {
     height: 560px;
     width: 560px;
-    /* background-color: white; */
-    /* border: 3px red solid; */
     border-radius: 12px;
     position: absolute;
     top: 0;
     margin: calc(50vh - 280px) calc(50vw - 280px);
 }
 
+.modalHeader {
+    display: flex;
+    justify-content: end;
+    margin: 0 15px;
+    background-color: white;
+    border-radius: 12px 12px 0 0;
+    margin-top: 8px;
+}
+
 .editModalCloseButton {
-    position: absolute;
-    right: 0;
     cursor: pointer;
     border: none;
     background-color: transparent;
+    margin-top: 4px;
 }
 
 .editSerieModal iframe {
@@ -106,4 +112,3 @@
     bottom: 0;
     border: none;   
 }
-

@@ -12,8 +12,12 @@
     background-color: white;
     font-size: 15px;
     margin: 20px 0;
-
     align-self: center;
+}
+
+.update {
+    margin: 0;
+    border-radius: 0 0 12px 12px;
 }
 
 .serieCreationForm label {
@@ -21,15 +25,15 @@
 }
 
 .serieCreationForm textarea {
-	width: 472px;
-  height: 100px;
-  padding: 12px;
-  
-  max-width: 472px;
-  min-width: 472px;
-  max-height: 100px;
-  min-height: 100px;
-  resize: none;
+    width: 472px;
+    height: 100px;
+    padding: 12px;
+    
+    max-width: 472px;
+    min-width: 472px;
+    max-height: 100px;
+    min-height: 100px;
+    resize: none;
 }
 
 .title {
