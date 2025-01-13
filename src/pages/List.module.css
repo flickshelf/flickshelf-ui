@@ -83,17 +83,20 @@
 .editSerieModal {
     height: 560px;
     width: 560px;
-    background-color: white;
+    /* background-color: white; */
+    /* border: 3px red solid; */
+    border-radius: 12px;
     position: absolute;
     top: 0;
     margin: calc(50vh - 280px) calc(50vw - 280px);
-    border: 4px double #416289;
 }
 
 .editModalCloseButton {
     position: absolute;
     right: 0;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 .editSerieModal iframe {
@@ -103,3 +106,4 @@
     bottom: 0;
     border: none;   
 }
+

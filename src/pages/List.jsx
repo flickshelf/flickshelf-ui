@@ -8,6 +8,8 @@ import loadingSpinner from '../assets/spinner.gif';
 
 import { useState, useEffect } from 'react';
 
+import { CloseOutline } from 'react-ionicons';
+
 import { Header } from '../components/Header.jsx';
 import { Card } from '../components/Card.jsx';
 
@@ -20,7 +22,7 @@ export function List() {
         return axios.get('https://api.flickshelf.com/2/series')
     }
 
-    useEffect(() => {
+    function handleGetSeries() {
         setIsLoading({active: true})
 
         getSeries()
@@ -29,13 +31,23 @@ export function List() {
             }).finally(() => {
                 setIsLoading({active: false})
             }) 
+    }
+
+    useEffect(() => {
+        handleGetSeries()
     }, [])
+    
 
     const openRegisterPage = () => {}
 
     const openListMoviesPage = () => {}
 
     const openListSeriesPage = () => {}
+
+    const closeEditSerieModal = () => {
+        setIsModalOpen({ active: false });
+        handleGetSeries()
+    }
 
     function handleEditClick(serieId) {
         setSeries([])
@@ -97,6 +109,16 @@ export function List() {
             </div>
 
             { isModalOpen.active && <div className={style.editSerieModal}>
+                <button className={style.editModalCloseButton}>
+                    <CloseOutline
+                        title={'Close modal'}
+                        width="16px"
+                        height="16px"
+                        color
+                        onClick={() => closeEditSerieModal()}
+                    />
+                </button>
+
                 <iframe src={modalContent} name={isModalOpen.serieId}></iframe>
             </div> }
         </>
