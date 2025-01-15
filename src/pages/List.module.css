@@ -112,3 +112,8 @@
     bottom: 0;
     border: none;   
 }
+
+.listIcon {
+    width: 16px;
+    height: 16px;
+}

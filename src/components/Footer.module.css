@@ -72,3 +72,14 @@
     gap: 4px;
 }
 
+.footerIcon {
+    height: 24px;
+    width: 24px;
+    color: black;
+}
+
+.footerMailIcon {
+    height: 20px;
+    width: 20px;
+    color: black;   
+}

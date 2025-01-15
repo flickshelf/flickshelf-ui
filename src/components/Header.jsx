@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import { LogOutOutline } from 'react-ionicons';
+import { IconContext } from "react-icons";
+import { IoLogOutOutline } from 'react-icons/io5';
 
 import style from "./Header.module.css"
 
@@ -34,12 +35,11 @@ export function Header() {
 						<input className={style.sListBtn} type="button" value="Series list" onClick={openListSeriesPage} /> 
 
 						<button className={style.logoutBtn} onClick={logout}>
-							<LogOutOutline
-								title={'test'}
-								width="32px"
-								height="32px"
-								color
-							/>
+							<IconContext.Provider value={{ className: style.headerIcon }}>
+								<IoLogOutOutline 
+									title={'test'}
+								/>
+							</IconContext.Provider>
 						</button>
 					</ul>
 				</nav>

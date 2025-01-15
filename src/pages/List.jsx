@@ -8,7 +8,8 @@ import loadingSpinner from '../assets/spinner.gif';
 
 import { useState, useEffect } from 'react';
 
-import { CloseOutline } from 'react-ionicons';
+import { IconContext } from "react-icons";
+import { IoClose } from "react-icons/io5";
 
 import { Header } from '../components/Header.jsx';
 import { Card } from '../components/Card.jsx';
@@ -37,12 +38,6 @@ export function List() {
         handleGetSeries()
     }, [])
 
-    const openRegisterPage = () => {}
-
-    const openListMoviesPage = () => {}
-
-    const openListSeriesPage = () => {}
-
     const closeEditSerieModal = () => {
         setIsModalOpen({ active: false });
         handleGetSeries()
@@ -54,7 +49,6 @@ export function List() {
     }
 
     function handleTrashClick(serieId) {
-        console.log('deleting serie ' + serieId)
         const hasConfirm = confirm('Are you sure you want to delete?')
 
         if (hasConfirm) {
@@ -69,7 +63,7 @@ export function List() {
                     })
                 }).catch(() => {
                     alert('There was an error while deleting this serie. Try again.')
-                    setIsLoading({ active: false, cardId: serieId })
+                    setIsLoading({ active: false, cardId: undefined })
                 })
         }
     }
@@ -82,7 +76,7 @@ export function List() {
         <>
             <Header/>
 
-            { isLoading.active && <div className={style.emptyState}>
+            { isLoading.active && !isLoading.cardId && <div className={style.emptyState}>
                 <img src={loadingSpinner}/>
             </div>}
 
@@ -110,13 +104,12 @@ export function List() {
             { isModalOpen.active && <div className={style.editSerieModal}>
                 <div className={style.modalHeader}>
                     <button className={style.editModalCloseButton}>
-                        <CloseOutline
-                            title={'Close modal'}
-                            width="16px"
-                            height="16px"
-                            color
-                            onClick={() => closeEditSerieModal()}
-                        />
+                        <IconContext.Provider value={{ className: style.listIcon }}>
+                            <IoClose 
+                                onClick={() => closeEditSerieModal()}
+                                title={'Close modal'}
+                            />
+                        </IconContext.Provider>
                     </button>
                     </div>
                 <iframe src={modalContent} name={isModalOpen.serieId}></iframe>

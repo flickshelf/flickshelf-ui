@@ -1,6 +1,7 @@
 import style from './Card.module.css';
 
-import { CreateOutline, Trash} from 'react-ionicons';
+import { IconContext } from "react-icons";
+import { IoPencil, IoTrash } from "react-icons/io5";
 
 import loadingSpinner from '../assets/spinner.gif';
 
@@ -57,20 +58,16 @@ export function Card(props) {
             </div>
 
             <div className={style.cardButtons}>
-              <CreateOutline
-                title={'Update'}
-                width="16px"
-                height="16px"
-                color
-                onClick={() => onUpdate(serie.id)}
-              />
-              <Trash
-                title={'Delete'}
-                width="16px"
-                height="16px"
-                color
-                onClick={() => onDelete(serie.id)}
-              />
+              <IconContext.Provider value={{ className: style.cardIcon }}>
+                  <IoPencil 
+                    onClick={() => onUpdate(serie.id)}
+                    title={'Update'}
+                  />
+                  <IoTrash 
+                    onClick={() => onDelete(serie.id)}  
+                    title={'Delete'}
+                  />
+              </IconContext.Provider>
             </div>
         </div>
     )

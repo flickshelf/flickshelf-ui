@@ -103,3 +103,8 @@ header .darkBlueHeader li {
     background-color: black; 
     color: white; 
 }
+
+.headerIcon {
+    width: 32px;
+    height: 32px;
+}
