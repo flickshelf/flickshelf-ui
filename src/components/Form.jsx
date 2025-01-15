@@ -91,6 +91,8 @@ export function Form(props) {
     }
 
     const update = () => {
+        setIsLoading(true)
+
         axios.put(`${api}/serie/${serieId}`, {
             serieTitle,
             serieGenre, 
@@ -103,6 +105,8 @@ export function Form(props) {
             handleUpdate()
         }).catch(() => {
             alert('There was an error while updating. Try again.')
+        }).finally(() => {
+            setIsLoading(false)
         })
     }
 
