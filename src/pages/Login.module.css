@@ -1,0 +1,375 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #d1d8df
+}
+
+.content {
+    width: 960px;
+    height: 70%;
+    background-color: white;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.content::before {
+    content: "";
+    position: absolute;
+    background-color: #416289;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    left: 0%;
+}
+.title{
+    font-size: 28px;
+}
+
+.titlePrimary {
+    color: white;
+}
+
+.description {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 30px;
+}
+.descriptionPrimary {
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    line-height: 30px;
+}
+
+.descriptionSecond {
+    font-size: 14px;
+    font-weight: 300;
+    color: gray;
+    line-height: 30px;
+}
+
+.btn {
+    border-radius: 16px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 10px;
+    padding: 10px 50px;
+    cursor: pointer;
+    width: 150px;
+    align-self: center;
+    border: none;
+    margin-top: 1rem;
+}
+
+.btnPrimary {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.btnPrimary:hover {
+   background-color: white;
+   color: #416289;
+   transition: 0.5s;
+}
+
+.btnSecond {
+  background-color: #0866ff;
+  width: 150px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnSecond:hover {
+  background-color: white;
+  border: 1px solid #0866ff;
+  color: black;
+  transition: 0.5s;
+}
+
+.buttonLoader {
+    height: 20px;
+    width: 20px;
+}
+
+.firstContent {
+    display: flex;
+}
+
+.firstContent .secondColumn {
+    z-index: 12;
+}
+
+.firstColumn {
+    text-align: center;
+    width: 40%;
+    z-index: 10;
+}
+
+.secondColumn {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleH2 {
+    color: #416289;
+    font-size: 32px;
+}
+
+.socialMedia {
+    margin: 1rem 0;
+}
+
+.linkSocialMedia:not(:first-child){
+    margin-left: 10px;
+}
+
+.linkSocialMedia:hover .itemSocialMedia {
+    background-color: #416289;
+    color: white;
+    transition: 0.5s;
+}
+
+.listSocialMedia {
+    display: flex;
+    list-style-type: none;
+    gap: 10px;
+    padding: 0;
+}
+
+.itemSocialMedia {
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #416289;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+
+.form input {
+    height: 45px;
+    width: 100%;
+    border: none;
+    background-color: #ecf0f1;  
+}
+
+.labelInput {
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin: 8px;
+}
+
+.iconModify {
+    color: #7f8c8d;
+    padding: 0 5px;
+}
+
+.iconModify:hover {
+    transform: scale(1.2); 
+}
+
+.showPassword {
+    padding-left: 8px;
+}
+
+.showPassword i {
+    right: 15%;
+    position: relative;
+    cursor: pointer;
+    margin-top: -8px;
+    margin-right: 4px;
+    color: #666d6d;;
+}
+
+.secondContent {
+    position: absolute;
+    display: flex;
+}
+
+.secondContent .firstColumn {
+    order: 2;
+    z-index: -1;
+}
+
+.secondContent .secondColumn {
+    order: 1;
+    z-index: -1;
+}
+
+.password {
+    color: #34495e;
+    font-size: 14px;
+    text-align: center;
+}
+
+.signInJs .firstContent .firstColumn,
+.signInJs .firstContent .secondColumn {
+    z-index: -1;
+}
+
+.signInJs .secondContent .secondColumn {
+    z-index: 11;
+}
+
+.signInJs .secondContent .firstColumn {
+    z-index: 13;
+}
+
+.signInJs .content::before {
+    left: 60%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    animation: slidein .7s;
+    z-index: 12;
+}
+
+.signUpJs .content::before {
+    animation: slideout .7s;
+    z-index: 12;
+}
+
+.signUpJs .secondContent .firstColumn,
+.signUpJs .secondContent .secondColumn {
+    z-index: -1;
+}
+
+.signUpJs .firstContent .secondColumn {
+    z-index: 11;
+}
+
+.signUpJs.firstContent .firstColumn {
+    z-index: 13;
+}
+
+.signUpJs .firstContent .secondColumn {
+    z-index: -1;
+    position: relative;
+    animation: displacementleft .7s;
+}
+
+.sign-up-js .secondContent .secondColumn {
+    z-index: -1;
+    position: relative;
+    animation: displacementright .7s;
+}
+
+@keyframes displacementleft {
+    from {
+        left: -110px;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    25% {
+        left: -100px;
+        opacity: .2;
+    }
+
+    50% {
+        left: -80px;
+    }
+
+    to {
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+}
+
+@keyframes displacementright {
+    from {
+        left: 0;
+        z-index: 12;
+    }
+
+    25% {
+        left: 80px;
+        opacity: .5;
+    }
+
+    50% {
+        left: 100px;
+        opacity: .2;
+    }
+
+    to {
+        left: 110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+@keyframes slidein {
+    from {
+        left: 0;
+        width: 40%;
+    }
+
+    25% {
+        left: 10%;
+        width: 50%;
+    }
+    50% {
+        left: 25%;
+        width: 60%;
+    }
+
+    75% {
+        left: 45%;
+        width: 50%;
+    }
+
+    to {
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@keyframes slideout {
+    from {
+        left: 60%;
+        width: 40%;
+    }
+
+    25% {
+        left: 45%;
+        width: 50%;
+    }
+
+    50% {
+        left: 25%;
+        width: 60%;
+    }
+
+    75% {
+        left: 10%;
+        width: 50%;
+    }
+
+    to {
+        left: 0%;
+        width: 40%;
+    }
+}
+
+/* # => Seletor de ids
+. => Seletor de classes */
