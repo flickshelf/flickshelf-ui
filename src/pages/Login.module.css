@@ -244,7 +244,7 @@
 
 .signUpJs .content::before {
     animation: slideout .7s;
-    z-index: 12;
+    /* z-index: 12; */
 }
 
 .signUpJs .secondContent .firstColumn,
@@ -261,12 +261,12 @@
 }
 
 .signUpJs .firstContent .secondColumn {
-    z-index: -1;
+    /* z-index: -1; */
     position: relative;
     animation: displacementleft .7s;
 }
 
-.sign-up-js .secondContent .secondColumn {
+.signUpJs .secondContent .secondColumn {
     z-index: -1;
     position: relative;
     animation: displacementright .7s;
