@@ -4,6 +4,10 @@ import style from './Login.module.css'
 
 import axios from 'axios';
 
+import spinner from '../assets/white-button-spinner.gif'
+
+const baseUrl = 'https://api.flickshelf.com'
+
 export function Login() {
     const navigate = useNavigate()
     
@@ -12,7 +16,11 @@ export function Login() {
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
 
+    const [signupName, setSignupName] = useState('');
     const [signupEmail, setSignupEmail] = useState('');
+    const [signupPassword, setSignupPassword] = useState('');
+    
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSignInSignUpClick = () => {
         setIsSignIn(!isSignIn)
@@ -20,19 +28,47 @@ export function Login() {
 
     const handleLoginEmail = (event) => {
         setLoginEmail(event.target.value)
-        console.log(loginEmail)
     }
 
     const handleLoginPassword = (event) => {
         setLoginPassword(event.target.value)
-        console.log(loginPassword)
     }
+
+    const handleSignupName = (event) => {
+        setSignupName(event.target.value)
+    }
+
+    const handleSignupEmail = (event) => {
+        setSignupEmail(event.target.value)
+    }
+
+    const handleSignupPassword = (event) => {
+        setSignupPassword(event.target.value)
+    }
+
+    const showPasswordSignUp = () => {}
+
+    const signUp = () => {
+        axios.post(`${baseUrl}/signup`, {
+            name: signupName,
+            signUpEmail: signupEmail, 
+            signUpPassword: signupPassword
+        }).then(() => {
+
+        }).catch(() => {
+            alert('There was an error. Try again.')
+        }).finally(() => {
+
+        })
+    } 
+
+    const showPasswordSignIn = () => {}
 
     const login = () => {
         // disableLoginButton({ button: 'login' })
-        // showLoginLoadingSpinner({ button: 'login' })
+        setIsLoading(true);
 
-        axios.post('https://api.flickshelf.com/login', {
+        axios.post(`${baseUrl}/login`, {
             loginEmail,
             loginPassword
         }).then((res) => {
@@ -42,7 +78,6 @@ export function Login() {
             if (userId) {
                 // storeUserCredentialsOnBrowser(userId)
                 
-                console.log('navigate("/")')
                 return navigate("/")
             } else {
                 // unableLoginButton({button: 'login'})
@@ -51,6 +86,9 @@ export function Login() {
         })
         .catch((err) => {
             console.error(err)
+        })
+        .finally(() => {
+            setIsLoading(false)
         })
     }
 
@@ -89,39 +127,43 @@ export function Login() {
     
                     <p className={style.descriptionSecond}>or use your email for registration:</p>  
                     <form className={style.form}>
-                        <label className={style.labelInput} for="">
+                        <label className={style.labelInput}>
                             <i className= {`${style.faRegular} ${style.faUser} ${style.iconModify}`}></i>
                             <input 
-                            type="text" 
-                            placeholder="Name" 
-                            id="name" 
-                            minlength="2" 
-                            maxlength="60"/>
+                                type="text" 
+                                placeholder="Name" 
+                                id="name" 
+                                minLength="2" 
+                                maxLength="60"
+                                onChange={handleSignupName}
+                            />
                         </label>
     
-                        <label className= {style.labelInput} for="">
+                        <label className= {style.labelInput}>
                             <i className={`${style.faRegular} ${style.faEnvelope} ${style.iconModify}`}></i>
                             <input 
                                 type="email" 
                                 placeholder="Email" 
                                 id="sign-up-email" 
                                 required
+                                onChange={handleSignupEmail}
                             />
                         </label>
     
-                        <label className={style.labelInput} for="">
+                        <label className={style.labelInput}>
                             <i className={`${style.faSolid} ${style.faLock} ${style.iconModify}`}></i>
                             <input 
                                 type="password" 
                                 id="password-right" 
                                 placeholder="Password" 
-                                autocomplete="new-password" 
-                                minlength="8"
-                                maxlength="40"
+                                autoComplete="new-password" 
+                                minLength="8"
+                                maxLength="40"
+                                onChange={handleSignupPassword}
                             />
     
                             <div className={style.showPassword}>
-                                <i className={`${style.faSolid} ${style.faEyeSlash}`} id="show-password-right" onclick="showPasswordSignUp()"></i> 
+                                <i className={`${style.faSolid} ${style.faEyeSlash}`} id="show-password-right" onClick={showPasswordSignUp}></i> 
                             </div>
     
                         </label>                    
@@ -129,10 +171,9 @@ export function Login() {
                         <button 
                             type="button" 
                             className={`${style.btn} ${style.btnSecond}`} 
-                            onclick="signUp()" 
+                            onClick={signUp} 
                             id="sign-up-button"
                         >Sign up</button>
-                       
                     </form>
                 </div>
             </div>
@@ -170,7 +211,7 @@ export function Login() {
     
                     <p className={style.descriptionSecond} >or use your email account:</p>  
                     <form className={style.form}>
-                        <label className={style.labelInput} for="">
+                        <label className={style.labelInput}>
                             <i className={`${style.faRegular} ${style.faEnvelope} ${style.iconModify}`}></i>
                             <input 
                                 type="email" 
@@ -180,18 +221,18 @@ export function Login() {
                             />
                         </label>
     
-                        <label className={style.labelInput} for="">
+                        <label className={style.labelInput}>
                             <i className={`${style.faSolid} ${style.faLock} ${style.iconModify}`}></i>
                             <input 
                                 type="password" 
                                 id="password-left" 
                                 placeholder="Password" 
-                                autocomplete="new-password"
+                                autoComplete="new-password"
                                 onChange={handleLoginPassword}
                             />
     
                             <div className={style.showPassword}>
-                                <i className={`${style.faSolid} ${style.faEyeSlash}`} id="show-password-left" onclick="showPasswordSignIn()"></i>   
+                                <i className={`${style.faSolid} ${style.faEyeSlash}`} id="show-password-left" onClick={showPasswordSignIn}></i>   
                             </div>
                         </label> 
                         <a className={style.password} href="#">Forgot your password?</a>
@@ -200,7 +241,7 @@ export function Login() {
                             className={`${style.btn} ${style.btnSecond}`} 
                             onClick={login}
                             id="login-button"
-                        >Sign in</button>
+                        >{ isLoading ? <img src={spinner} className={style.buttonLoader} /> : 'Sign in'}</button>
                     </form>
                 </div>
             </div>
