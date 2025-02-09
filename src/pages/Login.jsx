@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './Login.module.css'
 
+import { IconContext } from "react-icons";
+import { IoLogoFacebook, IoLogoGoogle, IoLogoLinkedin } from "react-icons/io5";
 import axios from 'axios';
 
 import spinner from '../assets/white-button-spinner.gif'
@@ -111,16 +113,25 @@ export function Login() {
                     <div className={style.socialMedia}>
                         <ul className={style.listSocialMedia}>
                             <a className={style.linkSocialMedia} href="#">
-                                <li className={style.itemSocialMedia}><i className={`${style.faBrands} ${style.faFacebook}`}></i>
+                                <li className={style.itemSocialMedia}>
+                                    <IconContext.Provider value={{}}>
+                                        <IoLogoFacebook />
+                                    </IconContext.Provider>
                                 </li>
                             </a>   
                             <a className={style.linkSocialMedia} href="#">
-                                <li className={style.itemSocialMedia}><i className={`${style.faBrands} ${style.faGooglePlusG}`}></i>
+                                <li className={style.itemSocialMedia}>
+                                    <IconContext.Provider value={{}}>
+                                        <IoLogoGoogle />
+                                    </IconContext.Provider>
                                 </li>
                             </a> 
                             <a className={style.linkSocialMedia} href="#">
-                                <li className={style.itemSocialMedia}><i className={`${style.faBrands} ${style.faLinkedin}`}></i>
-                                </li>
+                                <li className={style.itemSocialMedia}>
+                                    <IconContext.Provider value={{}}>
+                                        <IoLogoLinkedin />
+                                    </IconContext.Provider>
+                                </li> 
                             </a>
                         </ul>
                     </div>
@@ -195,15 +206,24 @@ export function Login() {
                     <div className={style.socialMedia}>
                         <ul className={style.listSocialMedia}>
                             <a className={style.linkSocialMedia} href="#">
-                                <li className={style.itemSocialMedia}><i className={`${style.faBrands} ${style.faFacebook}`}></i>
+                                <li className={style.itemSocialMedia}>
+                                <IconContext.Provider value={{}}>
+                                        <IoLogoFacebook />
+                                    </IconContext.Provider>
                                 </li>
                             </a>   
                             <a className={style.linkSocialMedia} href="#">
-                                <li className={style.itemSocialMedia}><i className={`${style.faBrands} ${style.faGooglePlusG}`}></i>
+                                <li className={style.itemSocialMedia}>
+                                    <IconContext.Provider value={{}}>
+                                        <IoLogoGoogle />
+                                    </IconContext.Provider>
                                 </li>
                             </a> 
                             <a className={style.linkSocialMedia} href="#">
-                                <li className={style.itemSocialMedia}><i className={`${style.faBrands} ${style.faLinkedin}`}></i>
+                                <li className={style.itemSocialMedia}>
+                                    <IconContext.Provider value={{}}>
+                                        <IoLogoLinkedin />
+                                    </IconContext.Provider>
                                 </li>
                             </a>
                         </ul>

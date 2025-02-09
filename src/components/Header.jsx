@@ -20,7 +20,9 @@ export function Header() {
 		navigate("/list")
 	}
 
-	const logout = () => {}
+	const logout = () => {
+		navigate("/login")
+	}
 
     return (
 		<header>
@@ -31,13 +33,13 @@ export function Header() {
 				<nav id="navigation">
 					<ul>
 						<input className={style.registerBtn} type="button" value="Register" onClick={openRegisterPage} />
-						<input className={style.mListBtn} type="button" value="Movies list" onClick={openListMoviesPage} />
+						{/* <input className={style.mListBtn} type="button" value="Movies list" onClick={openListMoviesPage} /> */}
 						<input className={style.sListBtn} type="button" value="Series list" onClick={openListSeriesPage} /> 
 
 						<button className={style.logoutBtn} onClick={logout}>
 							<IconContext.Provider value={{ className: style.headerIcon }}>
 								<IoLogOutOutline 
-									title={'test'}
+									title={'Logout'}
 								/>
 							</IconContext.Provider>
 						</button>

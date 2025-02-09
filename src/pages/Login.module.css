@@ -67,6 +67,13 @@
     margin-top: 1rem;
 }
 
+.btn.disabled {
+    background-color: grey;
+    cursor: not-allowed;
+    border: none;
+    color: white;
+}
+
 .btnPrimary {
     background-color: transparent;
     border: 1px solid white;
@@ -87,7 +94,7 @@
   justify-content: center;
 }
 
-.btnSecond:hover {
+.btnSecond:hover:not(.disabled) {
   background-color: white;
   border: 1px solid #0866ff;
   color: black;
@@ -152,8 +159,10 @@
     width: 35px;
     height: 35px;
     line-height: 35px;
-    text-align: center;
     color: #416289;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form {
