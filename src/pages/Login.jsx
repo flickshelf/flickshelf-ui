@@ -23,6 +23,7 @@ export function Login() {
     const [signupPassword, setSignupPassword] = useState('');
     
     const [isLoading, setIsLoading] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleSignInSignUpClick = () => {
         setIsSignIn(!isSignIn)
@@ -51,30 +52,44 @@ export function Login() {
     const showPasswordSignUp = () => {}
 
     const signUp = () => {
+        setIsLoading(true)
+        setIsButtonDisabled(true)
+
         axios.post(`${baseUrl}/signup`, {
             name: signupName,
             signUpEmail: signupEmail, 
             signUpPassword: signupPassword
         }).then(() => {
-
+            alert(`User ${signupName} created successfully!`)
+            goToLoginSection()
         }).catch(() => {
             alert('There was an error. Try again.')
         }).finally(() => {
-
+            setIsLoading(false)
+            setIsButtonDisabled(false)
         })
     } 
+
+    const goToLoginSection = () => {
+        setSignupName('')
+        setSignupEmail('')
+        setSignupPassword('')
+
+        window.location.reload()
+
+        // TODO: Slide container to login section
+    }
 
     const showPasswordSignIn = () => {}
 
     const login = () => {
-        // disableLoginButton({ button: 'login' })
         setIsLoading(true);
+        setIsButtonDisabled(true);
 
         axios.post(`${baseUrl}/login`, {
             loginEmail,
             loginPassword
         }).then((res) => {
-            console.log(res.data)
             const userId = res.data
 
             if (userId) {
@@ -82,7 +97,6 @@ export function Login() {
                 
                 return navigate("/")
             } else {
-                // unableLoginButton({button: 'login'})
                 alert('[ERROR]: Invalid email or password. Try again.')
             }
         })
@@ -91,6 +105,7 @@ export function Login() {
         })
         .finally(() => {
             setIsLoading(false)
+            setIsButtonDisabled(false);
         })
     }
 
@@ -181,10 +196,12 @@ export function Login() {
                     
                         <button 
                             type="button" 
-                            className={`${style.btn} ${style.btnSecond}`} 
+                            className={`${style.btn} ${style.btnSecond} ${isButtonDisabled ? style.disabled : ''}`} 
                             onClick={signUp} 
                             id="sign-up-button"
-                        >Sign up</button>
+                        >
+                            { isLoading ? <img src={spinner} className={style.buttonLoader} /> : 'Sign up'}
+                        </button>
                     </form>
                 </div>
             </div>
@@ -258,7 +275,7 @@ export function Login() {
                         <a className={style.password} href="#">Forgot your password?</a>
                         <button 
                             type="button" 
-                            className={`${style.btn} ${style.btnSecond}`} 
+                            className={`${style.btn} ${style.btnSecond} ${isButtonDisabled ? style.disabled : ''}`} 
                             onClick={login}
                             id="login-button"
                         >{ isLoading ? <img src={spinner} className={style.buttonLoader} /> : 'Sign in'}</button>
@@ -268,4 +285,3 @@ export function Login() {
         </div> 
     )
 }
-
