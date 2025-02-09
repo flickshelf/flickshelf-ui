@@ -6,6 +6,7 @@ import emptyState from '../assets/empty-state.png';
 
 import loadingSpinner from '../assets/spinner.gif';
 
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { IconContext } from "react-icons";
@@ -15,6 +16,7 @@ import { Header } from '../components/Header.jsx';
 import { Card } from '../components/Card.jsx';
 
 export function List() {
+    const navigate = useNavigate()
     const [series, setSeries] = useState([]);
     const [isLoading, setIsLoading] = useState({ active: false, cardId: undefined });
     const [isModalOpen, setIsModalOpen] = useState({ active: false, serieId: undefined });
@@ -36,7 +38,20 @@ export function List() {
 
     useEffect(() => {
         handleGetSeries()
+        checkUserCredentials()
     }, [])
+
+    function checkUserCredentials () {
+        const isUserLogged = localStorage.getItem('loggedUserId')     
+
+        if (!isUserLogged && window.location.pathname !== '/login') {     
+            return navigate("/login")
+        }
+       
+        if (isUserLogged && window.location.pathname === '/login') {
+            return navigate("/")
+        }
+    }
 
     const closeEditSerieModal = () => {
         setIsModalOpen({ active: false });

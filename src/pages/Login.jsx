@@ -82,6 +82,10 @@ export function Login() {
 
     const showPasswordSignIn = () => {}
 
+    const storeUserCredentialsOnBrowser = (userId) => {
+        localStorage.setItem('loggedUserId', userId)
+    }
+
     const login = () => {
         setIsLoading(true);
         setIsButtonDisabled(true);
@@ -93,7 +97,7 @@ export function Login() {
             const userId = res.data
 
             if (userId) {
-                // storeUserCredentialsOnBrowser(userId)
+                storeUserCredentialsOnBrowser(userId)
                 
                 return navigate("/")
             } else {

@@ -21,13 +21,22 @@ export function Header() {
 	}
 
 	const logout = () => {
-		navigate("/login")
+  		const didConfirm = confirm('You are going to be logged out')
+
+		if (didConfirm) {
+			localStorage.removeItem('loggedUserId')
+			navigate("/login")
+ 		}
+	}
+
+	const handleClickLogo = () => {
+		navigate("/")
 	}
 
     return (
 		<header>
 			<a onClick={openRegisterPage}>
-				<img className={style.logotipo} src={logo} alt="FlickShelf logo" />
+				<img className={style.logotipo} src={logo} alt="FlickShelf logo" onClick={handleClickLogo}/>
 			</a>
 			<div className={style.darkBlueHeader}>
 				<nav id="navigation">
