@@ -253,7 +253,7 @@
 
 .signUpJs .content::before {
     animation: slideout .7s;
-    /* z-index: 12; */
+    z-index: 12;
 }
 
 .signUpJs .secondContent .firstColumn,
@@ -265,12 +265,12 @@
     z-index: 11;
 }
 
-.signUpJs.firstContent .firstColumn {
+.signUpJs .firstContent .firstColumn {
     z-index: 13;
 }
 
-.signUpJs .firstContent .secondColumn {
-    /* z-index: -1; */
+.signInJs .firstContent .secondColumn {
+    z-index: -1;
     position: relative;
     animation: displacementleft .7s;
 }
@@ -379,6 +379,3 @@
         width: 40%;
     }
 }
-
-/* # => Seletor de ids
-. => Seletor de classes */
