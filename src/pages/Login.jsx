@@ -74,10 +74,10 @@ export function Login() {
         setSignupName('')
         setSignupEmail('')
         setSignupPassword('')
-
-        window.location.reload()
-
-        // TODO: Slide container to login section
+        
+        const container = document.querySelector(`.${style.container}`)
+        container.classList.remove(style.signUpJs)
+        container.classList.add(style.signInJs)
     }
 
     const showPasswordSignIn = () => {}
