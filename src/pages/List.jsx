@@ -20,9 +20,10 @@ export function List() {
     const [series, setSeries] = useState([]);
     const [isLoading, setIsLoading] = useState({ active: false, cardId: undefined });
     const [isModalOpen, setIsModalOpen] = useState({ active: false, serieId: undefined });
+    let userId = null
 
     const getSeries = () => {
-        return axios.get('https://api.flickshelf.com/2/series')
+        return axios.get(`https://api.flickshelf.com/${userId}/series`)
     }
 
     function handleGetSeries() {
@@ -37,6 +38,8 @@ export function List() {
     }
 
     useEffect(() => {
+        userId = localStorage.getItem('loggedUserId')
+
         handleGetSeries()
         checkUserCredentials()
     }, [])
