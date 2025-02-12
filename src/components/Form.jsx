@@ -59,12 +59,12 @@ export function Form(props) {
             return alert("All informations needs to be filled!")
         } 
 
-        // const ownerId = localStorage.getItem('loggedUserId')
+        const ownerId = localStorage.getItem('loggedUserId')
 
         setIsLoading(true)
 
         axios.post(`${api}/series`, {
-                ownerId: 2,
+                ownerId,
                 serieTitle,
                 serieGenre,
                 serieSeasons,
@@ -73,8 +73,6 @@ export function Form(props) {
             })
             .then(() => {
                 alert(`Serie ${serieTitle} created successfully!`)
-
-                // localStorage.removeItem('formValues')
 
                 setSerieTitle('')
                 setSerieGenre('')
