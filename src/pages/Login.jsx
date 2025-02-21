@@ -113,6 +113,12 @@ export function Login() {
         })
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            login()
+        } 
+    }
+
     return (
         <div className={`${style.container} ${isSignIn ? style.signInJs : style.signUpJs}`}>
             <div className={`${style.content} ${style.firstContent}`}>
@@ -270,6 +276,7 @@ export function Login() {
                                 placeholder="Password" 
                                 autoComplete="new-password"
                                 onChange={handleLoginPassword}
+                                onKeyDown={handleKeyPress}
                             />
     
                             <div className={style.showPassword}>
