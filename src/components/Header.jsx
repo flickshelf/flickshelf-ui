@@ -33,6 +33,10 @@ export function Header() {
 		navigate("/")
 	}
 
+	const openUsersManagementPage = () => {
+		navigate("/users-management")
+	}
+
     return (
 		<header>
 			<a onClick={openRegisterPage}>
@@ -41,6 +45,7 @@ export function Header() {
 			<div className={style.darkBlueHeader}>
 				<nav id="navigation">
 					<ul>
+						<input className={style.sListBtn} type="button" value="Users management" onClick={openUsersManagementPage} />
 						<input className={style.registerBtn} type="button" value="Register" onClick={openRegisterPage} />
 						{/* <input className={style.mListBtn} type="button" value="Movies list" onClick={openListMoviesPage} /> */}
 						<input className={style.sListBtn} type="button" value="Series list" onClick={openListSeriesPage} /> 
