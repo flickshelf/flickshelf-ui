@@ -3,9 +3,9 @@
 # Flickshelf UI V2 - React
 
 ### Screenshots:
-![serie-crud login screenshot](./web/png/login.png)
+![serie-crud login screenshot](./src/assets/login.png)
 
-![serie-crud home screenshot](./web/png/image.png)
+![serie-crud home screenshot](./src/assets/home.png)
 
 ### Description:
 App for series watching management, where will be possible to create series, informing title, genre, number os seasons, release year, and other informations.
@@ -26,6 +26,7 @@ App for series watching management, where will be possible to create series, inf
 - Synopsis.
 
 ### Utilized techs:
+- ReactJS;
 - HTML;
 - CSS;
 - JavaScript;
