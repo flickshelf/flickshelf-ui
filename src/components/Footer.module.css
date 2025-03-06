@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 .lightBlueFooter {
     margin-top: 150px;
     width: 100%;
@@ -52,7 +54,7 @@
 }
 
 .socialItems .leftItems h3 {
-    font-family: "Share Tech Mono";
+    font-family: "Share Tech Mono", monospace;
     font-size: 36px;
 }
 
