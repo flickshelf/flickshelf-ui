@@ -87,7 +87,7 @@ export function List() {
     }
 
     const modalContent = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-        ? 'http://localhost:5173/update-serie?id=123' 
+        ? 'http://localhost:5173/update-serie' 
         : 'https://flickshelf.com/update-serie'
 
     return (
