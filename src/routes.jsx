@@ -11,7 +11,7 @@ export function AppRoutes () {
             <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/list" element={<List />} />
-                <Route path="update-serie" element={<UpdateSerie />} />
+                <Route path="/update-serie" element={<UpdateSerie />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
         </Router>
