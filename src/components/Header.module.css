@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    height: 150px;
+    height: 100px;
     background-color: #d1d8df; 
 }
 
@@ -23,7 +23,7 @@ header .darkBlueHeader li {
   
     position: absolute;  
     left: 35px;
-    margin-top: 20px;
+    margin-top: 4px;
     cursor: pointer;
   
     border-radius: 20px;
