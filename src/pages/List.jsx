@@ -27,6 +27,8 @@ export function List() {
     }
 
     function handleGetSeries() {
+        userId = localStorage.getItem('loggedUserId')
+        
         setIsLoading({active: true})
 
         getSeries()
@@ -38,8 +40,6 @@ export function List() {
     }
 
     useEffect(() => {
-        userId = localStorage.getItem('loggedUserId')
-
         handleGetSeries()
         checkUserCredentials()
     }, [])
