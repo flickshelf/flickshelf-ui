@@ -28,6 +28,14 @@ export const UsersManagement = () => {
             })
     }
 
+    const updateUser = (userId) => {
+        console.log(`Update user ${userId}`)
+    }
+
+    const deleteUser = (userId) => {
+        console.log(`Delete user ${userId}`)
+    }
+
     return (
         <>
             <Header />
@@ -37,7 +45,7 @@ export const UsersManagement = () => {
 
                 <div className={style.usersList}>
                     { users.map((user) => {
-                        return <UserCard key={user.id} user={user}/>
+                        return <UserCard key={user.id} user={user} onUpdate={updateUser} onDelete={deleteUser}/>
                     }) }
                 </div>
             </div>
