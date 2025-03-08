@@ -27,6 +27,8 @@ export function List() {
     }
 
     function handleGetSeries() {
+        userId = localStorage.getItem('loggedUserId')
+        
         setIsLoading({active: true})
 
         getSeries()
@@ -38,8 +40,6 @@ export function List() {
     }
 
     useEffect(() => {
-        userId = localStorage.getItem('loggedUserId')
-
         handleGetSeries()
         checkUserCredentials()
     }, [])
@@ -87,7 +87,7 @@ export function List() {
     }
 
     const modalContent = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-        ? 'http://localhost:5173/update-serie?id=123' 
+        ? 'http://localhost:5173/update-serie' 
         : 'https://flickshelf.com/update-serie'
 
     return (
