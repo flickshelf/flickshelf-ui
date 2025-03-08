@@ -32,9 +32,24 @@ export const UsersManagement = () => {
         console.log(`Update user ${userId}`)
     }
 
-    const deleteUser = (userId) => {
-        console.log(`Delete user ${userId}`)
-    }
+  const deleteUser = (userId) => {
+      const userDidConfirm = confirm('Are you sure you want to delete this user?')
+
+      if (userDidConfirm) {
+          axios.delete(`${apiUrl}/users/${userId}`)
+          .then(successDeleteUser)
+          .catch(errorDeleteUser)
+      }
+  }
+
+  function successDeleteUser() {
+      alert(`User deleted successfully!`)
+      getAllUsers()
+  }
+
+  function errorDeleteUser() {
+      alert(`There was an error while deleting this user. Try again.`)
+  }
 
     return (
         <>
