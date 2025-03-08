@@ -37,7 +37,7 @@ export const UsersManagement = () => {
 
                 <div className={style.usersList}>
                     { users.map((user) => {
-                        return <UserCard />
+                        return <UserCard key={user.id} user={user}/>
                     }) }
                 </div>
             </div>
