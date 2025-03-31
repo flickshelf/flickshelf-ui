@@ -12,7 +12,7 @@ const apiUrl = 'http://localhost:3333'
 
 export const UsersManagement = () => {
     const [users, setUsers] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState({active: false, id: undefined});
 
     useEffect(() => {
         getAllUsers()
@@ -37,13 +37,13 @@ export const UsersManagement = () => {
     const userDidConfirm = confirm('Are you sure you want to delete this user?')
 
     if (userDidConfirm) {
-        setIsLoading(true)
+        setIsLoading({active: true, id: userId})
 
         axios.delete(`${apiUrl}/users/${userId}`)
             .then(successDeleteUser)
             .catch(errorDeleteUser)
             .finally(() => {
-              setIsLoading(false)
+              setIsLoading({active: false, id: userId})
             })
     }
   }

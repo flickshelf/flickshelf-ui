@@ -7,10 +7,10 @@ import loadingSpinner from '../assets/spinner.gif'
 
 export function UserCard (props) {
     const { user, onUpdate, onDelete, isLoading } = props;
-
-    if (isLoading) {
+  
+    if (isLoading.active && isLoading.id === user.id) {
         return (
-            <div className={style.serieItem}>
+            <div className={`${style.userCard} ${style.loading}`}>
                 <div className={style.loadingState}>
                     <img src={loadingSpinner} className={style.loadingSpinner}/>
                 </div>
