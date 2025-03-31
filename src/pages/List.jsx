@@ -23,12 +23,12 @@ export function List() {
     let userId = null
 
     const getSeries = () => {
+        userId = localStorage.getItem('loggedUserId')
+
         return axios.get(`https://api.flickshelf.com/${userId}/series`)
     }
 
     function handleGetSeries() {
-        userId = localStorage.getItem('loggedUserId')
-        
         setIsLoading({active: true})
 
         getSeries()

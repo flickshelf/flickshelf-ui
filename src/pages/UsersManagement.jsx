@@ -11,7 +11,8 @@ import { UserCard } from '../components/UserCard'
 const apiUrl = 'http://localhost:3333'
 
 export const UsersManagement = () => {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         getAllUsers()
@@ -33,13 +34,18 @@ export const UsersManagement = () => {
     }
 
   const deleteUser = (userId) => {
-      const userDidConfirm = confirm('Are you sure you want to delete this user?')
+    const userDidConfirm = confirm('Are you sure you want to delete this user?')
 
-      if (userDidConfirm) {
-          axios.delete(`${apiUrl}/users/${userId}`)
-          .then(successDeleteUser)
-          .catch(errorDeleteUser)
-      }
+    if (userDidConfirm) {
+        setIsLoading(true)
+
+        axios.delete(`${apiUrl}/users/${userId}`)
+            .then(successDeleteUser)
+            .catch(errorDeleteUser)
+            .finally(() => {
+              setIsLoading(false)
+            })
+    }
   }
 
   function successDeleteUser() {
@@ -60,7 +66,7 @@ export const UsersManagement = () => {
 
                 <div className={style.usersList}>
                     { users.map((user) => {
-                        return <UserCard key={user.id} user={user} onUpdate={updateUser} onDelete={deleteUser}/>
+                        return <UserCard key={user.id} user={user} onUpdate={updateUser} onDelete={deleteUser} isLoading={isLoading} />
                     }) }
                 </div>
             </div>
