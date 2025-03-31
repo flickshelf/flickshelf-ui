@@ -3,9 +3,20 @@ import style from './UserCard.module.css';
 import { IconContext } from "react-icons";
 import { IoPencil, IoTrash } from "react-icons/io5";
 
+import loadingSpinner from '../assets/spinner.gif'
 
 export function UserCard (props) {
-    const { user, onUpdate, onDelete } = props;
+    const { user, onUpdate, onDelete, isLoading } = props;
+
+    if (isLoading) {
+        return (
+            <div className={style.serieItem}>
+                <div className={style.loadingState}>
+                    <img src={loadingSpinner} className={style.loadingSpinner}/>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className={style.userCard}>
