@@ -14,7 +14,7 @@ export function Home() {
     }, [])
 
     function checkUserCredentials () {
-        const isUserLogged = localStorage.getItem('loggedUserId')
+        const isUserLogged = localStorage.getItem('loggedUser')
 
         if (!isUserLogged && window.location.pathname !== '/login') {
 
