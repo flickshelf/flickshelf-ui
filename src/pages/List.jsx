@@ -20,15 +20,15 @@ export function List() {
     const [series, setSeries] = useState([]);
     const [isLoading, setIsLoading] = useState({ active: false, cardId: undefined });
     const [isModalOpen, setIsModalOpen] = useState({ active: false, serieId: undefined });
-    let userId = null
+    let loggedUser = null
 
     const getSeries = () => {
-        userId = localStorage.getItem('loggedUserId')
-
-        return axios.get(`https://api.flickshelf.com/${userId}/series`)
+        return axios.get(`https://api.flickshelf.com/${loggedUser.id}/series`)
     }
 
     function handleGetSeries() {
+        if (!loggedUser) return
+
         setIsLoading({active: true})
 
         getSeries()
@@ -40,18 +40,18 @@ export function List() {
     }
 
     useEffect(() => {
-        handleGetSeries()
         checkUserCredentials()
+        handleGetSeries()
     }, [])
 
     function checkUserCredentials () {
-        const isUserLogged = localStorage.getItem('loggedUserId')     
+        loggedUser = JSON.parse(localStorage.getItem('loggedUser'))
 
-        if (!isUserLogged && window.location.pathname !== '/login') {     
+        if (!loggedUser && window.location.pathname !== '/login') {
             return navigate("/login")
         }
        
-        if (isUserLogged && window.location.pathname === '/login') {
+        if (loggedUser && window.location.pathname === '/login') {
             return navigate("/")
         }
     }

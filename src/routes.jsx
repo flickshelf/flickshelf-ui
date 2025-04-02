@@ -4,6 +4,10 @@ import { Home } from './pages/Home'
 import { List } from './pages/List'
 import { UpdateSerie } from './pages/UpdateSerie'
 import { Login } from './pages/Login'
+import { UsersManagement } from './pages/UsersManagement'
+import { Navigate } from 'react-router-dom'
+
+const user = JSON.parse(localStorage.getItem('loggedUser'))
 
 export function AppRoutes () {
     return (
@@ -13,6 +17,8 @@ export function AppRoutes () {
                 <Route path="/list" element={<List />} />
                 <Route path="/update-serie" element={<UpdateSerie />} />
                 <Route path="/login" element={<Login />} />
+                {user?.role === 'ADMIN' && <Route path="/users-management" element={<UsersManagement />} />}
+                <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </Router>
     )
