@@ -83,7 +83,10 @@ export function Login() {
     const showPasswordSignIn = () => {}
 
     const storeUserCredentialsOnBrowser = (userId) => {
-        localStorage.setItem('loggedUserId', userId)
+        localStorage.setItem('loggedUser', JSON.stringify({
+            id: userId,
+            role: 'USER'
+        }))
     }
 
     const login = () => {

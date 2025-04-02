@@ -59,7 +59,9 @@ export function Form(props) {
             return alert("All informations needs to be filled!")
         } 
 
-        const ownerId = localStorage.getItem('loggedUserId')
+        const loggedUser = JSON.parse(localStorage.getItem('loggedUser'))
+
+        const ownerId = String(loggedUser.id)
 
         setIsLoading(true)
 

@@ -2,6 +2,7 @@
 
 :root {
     --bg-primary-white: #eeeaea;
+    --primary-container : white;
 }
 
 * {

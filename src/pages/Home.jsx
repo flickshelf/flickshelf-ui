@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-
 import { Header } from '../components/Header'
 import { Form } from '../components/Form';
 import { Footer } from '../components/Footer'
@@ -15,7 +14,7 @@ export function Home() {
     }, [])
 
     function checkUserCredentials () {
-        const isUserLogged = localStorage.getItem('loggedUserId')
+        const isUserLogged = localStorage.getItem('loggedUser')
 
         if (!isUserLogged && window.location.pathname !== '/login') {
 
