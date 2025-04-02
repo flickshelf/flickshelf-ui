@@ -10,6 +10,8 @@ import logo from '../assets/temp-logo.png'
 export function Header() {
 	const navigate = useNavigate()
 
+	const user = JSON.parse(localStorage.getItem('loggedUser'))
+
 	const openRegisterPage = () => {
 		navigate("/")
 	}
@@ -24,7 +26,7 @@ export function Header() {
   		const didConfirm = confirm('You are going to be logged out')
 
 		if (didConfirm) {
-			localStorage.removeItem('loggedUserId')
+			localStorage.removeItem('loggedUser')
 			navigate("/login")
  		}
 	}
@@ -45,7 +47,7 @@ export function Header() {
 			<div className={style.darkBlueHeader}>
 				<nav id="navigation">
 					<ul>
-						<input className={style.sListBtn} type="button" value="Users management" onClick={openUsersManagementPage} />
+						{user.role === 'ADMIN' && <input className={style.sListBtn} type="button" value="Users management" onClick={openUsersManagementPage} />}
 						<input className={style.registerBtn} type="button" value="Register" onClick={openRegisterPage} />
 						{/* <input className={style.mListBtn} type="button" value="Movies list" onClick={openListMoviesPage} /> */}
 						<input className={style.sListBtn} type="button" value="Series list" onClick={openListSeriesPage} /> 
