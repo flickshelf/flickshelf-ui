@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -7,19 +8,26 @@ import style from './UsersManagement.module.css'
 import { Header } from '../components/Header'
 import { UserCard } from '../components/UserCard'
 
-// const apiUrl = 'https://api.flickshelf.com'
-const apiUrl = 'http://localhost:3333'
+const IS_DEV_ENV = false
+
+const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
 export const UsersManagement = () => {
+    const navigate = useNavigate();
+
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState({active: false, id: undefined});
 
     useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('loggedUser'))
+
+        if (user.role !== 'ADMIN') return navigate('/login')
+
         getAllUsers()
     }, [])
 
     function getAllUsers() {
-        axios.get(`${apiUrl}/users`)
+        axios.get(`${baseUrl}/users`)
             .then((allUsers) => {
                 setUsers(allUsers.data)
             })
@@ -39,7 +47,7 @@ export const UsersManagement = () => {
     if (userDidConfirm) {
         setIsLoading({active: true, id: userId})
 
-        axios.delete(`${apiUrl}/users/${userId}`)
+        axios.delete(`${baseUrl}/users/${userId}`)
             .then(successDeleteUser)
             .catch(errorDeleteUser)
             .finally(() => {
