@@ -8,7 +8,9 @@ import axios from 'axios';
 
 import spinner from '../assets/white-button-spinner.gif'
 
-const baseUrl = 'https://api.flickshelf.com'
+const IS_DEV_ENV = false
+
+const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
 export function Login() {
     const navigate = useNavigate()
