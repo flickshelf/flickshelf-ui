@@ -8,7 +8,9 @@ import axios from 'axios';
 
 import spinner from '../assets/white-button-spinner.gif'
 
-const baseUrl = 'https://api.flickshelf.com'
+const IS_DEV_ENV = false
+
+const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
 export function Login() {
     const navigate = useNavigate()
@@ -82,10 +84,10 @@ export function Login() {
 
     const showPasswordSignIn = () => {}
 
-    const storeUserCredentialsOnBrowser = (userId) => {
+    const storeUserCredentialsOnBrowser = (user) => {
         localStorage.setItem('loggedUser', JSON.stringify({
-            id: userId,
-            role: 'USER'
+            id: user.id,
+            role: user.role
         }))
     }
 
@@ -97,11 +99,11 @@ export function Login() {
             loginEmail,
             loginPassword
         }).then((res) => {
-            const userId = res.data
+            const user = res.data
 
-            if (userId) {
-                storeUserCredentialsOnBrowser(userId)
-                
+            if (user.id) {
+                storeUserCredentialsOnBrowser(user)
+
                 return navigate("/")
             } else {
                 alert('[ERROR]: Invalid email or password. Try again.')
