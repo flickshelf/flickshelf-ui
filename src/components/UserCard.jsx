@@ -1,7 +1,9 @@
 import style from './UserCard.module.css';
 
+import * as Dialog from '@radix-ui/react-dialog';
+
 import { IconContext } from "react-icons";
-import { IoPencil, IoTrash } from "react-icons/io5";
+import { IoPencil, IoTrash, IoClose } from "react-icons/io5";
 
 import loadingSpinner from '../assets/spinner.gif'
 
@@ -27,12 +29,30 @@ export function UserCard (props) {
             </div>
             <div className={style.rightItems}>
                 <IconContext.Provider value={{ className: style.cardIcon }}>
-                    <button>
-                        <IoPencil 
-                            onClick={() => onUpdate(user.id)}
-                            title={'Update'}
-                        />
-                    </button>
+                    <Dialog.Root>
+                        <Dialog.Trigger asChild>
+                            <button>
+                                <IoPencil 
+                                    onClick={() => onUpdate(user.id)}
+                                    title={'Update'}
+                                />
+                            </button>
+                        </Dialog.Trigger>
+                        <Dialog.Portal>
+                            <Dialog.Overlay className={style.modalOverlay} />
+
+                            <Dialog.Content className={style.modalContent}>
+                                <Dialog.Title>User Update</Dialog.Title>
+                                
+                                <Dialog.Close className={style.modalCloseButton}>
+                                    <IconContext.Provider value={{ className: style.modalCloseIcon }}>
+                                        <IoClose title={'Close modal'} />
+                                    </IconContext.Provider>
+                                </Dialog.Close>
+                            </Dialog.Content>
+                        </Dialog.Portal>
+
+                    </Dialog.Root>
                    <button>
                          <IoTrash 
                             onClick={() => onDelete(user.id)}  
