@@ -1,5 +1,8 @@
 import style from './UserCard.module.css';
 
+import * as Dialog from '@radix-ui/react-dialog';
+import { UserUpdateDialog } from '../dialogs/UserUpdateDialog';
+
 import { IconContext } from "react-icons";
 import { IoPencil, IoTrash } from "react-icons/io5";
 
@@ -27,12 +30,20 @@ export function UserCard (props) {
             </div>
             <div className={style.rightItems}>
                 <IconContext.Provider value={{ className: style.cardIcon }}>
-                    <button>
-                        <IoPencil 
-                            onClick={() => onUpdate(user.id)}
-                            title={'Update'}
-                        />
-                    </button>
+                    <Dialog.Root>
+                        <Dialog.Trigger asChild>
+                            <button>
+                                <IoPencil 
+                                    onClick={() => onUpdate(user.id)}
+                                    title={'Update'}
+                                />
+                            </button>
+                        </Dialog.Trigger>
+                        <Dialog.Portal>
+                            <UserUpdateDialog />
+                        </Dialog.Portal>
+
+                    </Dialog.Root>
                    <button>
                          <IoTrash 
                             onClick={() => onDelete(user.id)}  
