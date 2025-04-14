@@ -7,9 +7,9 @@ import { IconContext } from "react-icons";
 import style from './UserUpdateDialog.module.css';
 
 function UserUpdateDialogComponent () {
-    const userName = "2"
-    const userEmail = "2"
-    const userRole = "2"
+    const userName = "User test"
+    const userEmail = "testing@mail.com"
+    const userRole = "User"
 
     const onChangeName = () => {}
 
@@ -18,34 +18,36 @@ function UserUpdateDialogComponent () {
             <Dialog.Overlay className={style.modalOverlay} />
 
             <Dialog.Content className={style.modalContent}>
-                <Dialog.Title>User Update</Dialog.Title>
+                <Dialog.Title>User update</Dialog.Title>
                 
-                <label className={style.label}>Name</label>
-                <input 
-                    type="text" 
-                    value={userName}
-                    onChange={onChangeName}
-                    placeholder='Type your name...'
-                />
+                <div className={style.fieldsSection}>
+                    <label className={style.label}>Name</label>
+                    <input 
+                        type="text" 
+                        value={userName}
+                        onChange={onChangeName}
+                        placeholder='Type your name...'
+                    />
 
-                <label className={style.label}>Email</label>
-                <input 
-                    type="text" 
-                    value={userEmail}
-                    onChange={onChangeName}
-                    placeholder='Type your email...'
-                />
+                    <label className={style.label}>Email</label>
+                    <input 
+                        type="text" 
+                        value={userEmail}
+                        onChange={onChangeName}
+                        placeholder='Type your email...'
+                    />
 
-                <label className={style.label}>Role</label>
-                <select value={userRole} onChange={onChangeName}>
-                    <option value="">Select role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
-                </select>
-
-                <button className={style.cancelButton}>Cancel</button>
-
-                <button className={style.updateButton}>Update</button>
+                    <label className={style.label}>Role</label>
+                    <select value={userRole} onChange={onChangeName}>
+                        <option value="">Select role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                    </select>
+                </div>
+                <div className={style.buttonsSection}>
+                    <button className={style.cancelButton}>Cancel</button>
+                    <button className={style.updateButton}>Update</button>
+                </div>
 
                 <Dialog.Close className={style.modalCloseButton}>
                     <IconContext.Provider value={{ className: style.modalCloseIcon }}>
