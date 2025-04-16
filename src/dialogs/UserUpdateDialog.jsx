@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 
 import * as Dialog from '@radix-ui/react-dialog';
 import { IoClose } from "react-icons/io5";
@@ -6,12 +6,31 @@ import { IconContext } from "react-icons";
 
 import style from './UserUpdateDialog.module.css';
 
-function UserUpdateDialogComponent () {
-    const userName = "User test"
-    const userEmail = "testing@mail.com"
-    const userRole = "User"
+function UserUpdateDialogComponent (props) {
+    const {user} = props
 
-    const onChangeName = () => {}
+    const [userName, setUserName] = useState(user.name)
+    const [userEmail, setUserEmail] = useState(user.email)
+    const [userRole, setUserRole] = useState(user.role)
+
+    const onChangeName = (event) => {
+        const newUserName = event.target.value
+        setUserName(newUserName)
+    }
+
+    const onChangeEmail = (event) => {
+        const newUserEmail = event.target.value
+        setUserEmail(newUserEmail)
+    }
+
+    const onChangeRole = (event) => {
+        const newUserRole = event.target.value
+        setUserRole(newUserRole)
+    }
+
+    const onUpdateUser = () => {
+        console.log(userName,userEmail, userRole)
+    }
 
     return (
         <>
@@ -33,20 +52,20 @@ function UserUpdateDialogComponent () {
                     <input 
                         type="text" 
                         value={userEmail}
-                        onChange={onChangeName}
+                        onChange={onChangeEmail}
                         placeholder='Type your email...'
                     />
 
                     <label className={style.label}>Role</label>
-                    <select value={userRole} onChange={onChangeName}>
+                    <select value={userRole} onChange={onChangeRole}>
                         <option value="">Select role</option>
-                        <option value="Admin">Admin</option>
-                        <option value="User">User</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="USER">User</option>
                     </select>
                 </div>
                 <div className={style.buttonsSection}>
                     <button className={style.cancelButton}>Cancel</button>
-                    <button className={style.updateButton}>Update</button>
+                    <button className={style.updateButton} onClick={onUpdateUser}>Update</button>
                 </div>
 
                 <Dialog.Close className={style.modalCloseButton}>

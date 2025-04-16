@@ -10,7 +10,7 @@ import loadingSpinner from '../assets/spinner.gif'
 
 export function UserCard (props) {
     const { user, onUpdate, onDelete, isLoading } = props;
-  
+    
     if (isLoading.active && isLoading.id === user.id) {
         return (
             <div className={`${style.userCard} ${style.loading}`}>
@@ -40,7 +40,7 @@ export function UserCard (props) {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <UserUpdateDialog />
+                            <UserUpdateDialog user={user}/>
                         </Dialog.Portal>
 
                     </Dialog.Root>

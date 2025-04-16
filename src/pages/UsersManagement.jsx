@@ -8,7 +8,7 @@ import style from './UsersManagement.module.css'
 import { Header } from '../components/Header'
 import { UserCard } from '../components/UserCard'
 
-const IS_DEV_ENV = false
+const IS_DEV_ENV = true
 
 const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
