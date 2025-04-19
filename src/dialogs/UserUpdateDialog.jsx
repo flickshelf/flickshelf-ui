@@ -1,10 +1,15 @@
 import React, { useState }  from 'react';
 
+import axios from 'axios';
+
 import * as Dialog from '@radix-ui/react-dialog';
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons";
 
 import style from './UserUpdateDialog.module.css';
+
+const IS_DEV_ENV = true
+const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
 function UserUpdateDialogComponent (props) {
     const {user} = props
@@ -28,8 +33,18 @@ function UserUpdateDialogComponent (props) {
         setUserRole(newUserRole)
     }
 
-    const onUpdateUser = () => {
-        console.log(userName,userEmail, userRole)
+    const onUpdateUser = (userId) => {
+        axios.put(`${baseUrl}/users/${user.id}`, {
+            userName,
+            userEmail,
+            userRole,
+        })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log('Error while updating user')
+            })
     }
 
     return (
