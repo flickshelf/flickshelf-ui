@@ -90,7 +90,7 @@ function UserUpdateDialogComponent (props) {
                     </select>
                 </div>
                 <div className={style.buttonsSection}>
-                    <button className={style.cancelButton}>Cancel</button>
+                    <button className={style.cancelButton} onClick={() => setOpen(false)}>Cancel</button>
 
                     <button className={`${style.updateButton} ${isLoading ? style.disabled : ''}`} type="button" onClick={onUpdateUser}>
                         { isLoading ? <img src={spinner} className={style.buttonLoader} /> : 'Update' }
