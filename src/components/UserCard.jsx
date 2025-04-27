@@ -1,3 +1,5 @@
+import React, { useState }  from 'react';
+
 import style from './UserCard.module.css';
 
 import * as Dialog from '@radix-ui/react-dialog';
@@ -9,6 +11,12 @@ import { IoPencil, IoTrash } from "react-icons/io5";
 import loadingSpinner from '../assets/spinner.gif'
 
 export function UserCard (props) {
+    const [open, setOpen] = useState(false)
+
+    function teste(valorTeste) {
+       console.log(valorTeste)
+    }
+
     const { user, onUpdate, onDelete, isLoading } = props;
     
     if (isLoading.active && isLoading.id === user.id) {
@@ -30,7 +38,7 @@ export function UserCard (props) {
             </div>
             <div className={style.rightItems}>
                 <IconContext.Provider value={{ className: style.cardIcon }}>
-                    <Dialog.Root>
+                    <Dialog.Root open={open} onOpenChange={setOpen}>
                         <Dialog.Trigger asChild>
                             <button>
                                 <IoPencil 
@@ -40,7 +48,7 @@ export function UserCard (props) {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <UserUpdateDialog user={user}/>
+                            <UserUpdateDialog user={user} setOpen={teste}/>
                         </Dialog.Portal>
 
                     </Dialog.Root>

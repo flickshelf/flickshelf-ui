@@ -89,3 +89,14 @@
 .buttonsSection button:hover {
     filter: brightness(1);
 }
+
+.buttonLoader {
+    height: 20px;
+    width: 20px;
+}
+
+.updateButton.disabled {
+    cursor: not-allowed;
+    background-color: grey;
+    color: white;
+}
