@@ -13,11 +13,7 @@ import loadingSpinner from '../assets/spinner.gif'
 export function UserCard (props) {
     const [open, setOpen] = useState(false)
 
-    function teste(valorTeste) {
-       console.log(valorTeste)
-    }
-
-    const { user, onUpdate, onDelete, isLoading } = props;
+    const { user, onUpdate, onDelete, isLoading, handleUsersUpdate } = props;
     
     if (isLoading.active && isLoading.id === user.id) {
         return (
@@ -48,7 +44,11 @@ export function UserCard (props) {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <UserUpdateDialog user={user} setOpen={teste}/>
+                            <UserUpdateDialog 
+                                user={user} 
+                                setOpen={setOpen} 
+                                handleUsersUpdate={handleUsersUpdate} 
+                            />
                         </Dialog.Portal>
 
                     </Dialog.Root>

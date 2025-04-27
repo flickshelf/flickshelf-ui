@@ -74,7 +74,14 @@ export const UsersManagement = () => {
 
                 <div className={style.usersList}>
                     { users.map((user) => {
-                        return <UserCard key={user.id} user={user} onUpdate={updateUser} onDelete={deleteUser} isLoading={isLoading} />
+                        return <UserCard 
+                            key={user.id} 
+                            user={user} 
+                            onUpdate={updateUser} 
+                            onDelete={deleteUser} 
+                            isLoading={isLoading} 
+                            handleUsersUpdate={getAllUsers}
+                        />
                     }) }
                 </div>
             </div>
