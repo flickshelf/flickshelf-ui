@@ -97,7 +97,7 @@ function UserUpdateDialogComponent (props) {
                     </button>
                 </div>
 
-                <Dialog.Close className={style.modalCloseButton}>
+                <Dialog.Close autoFocus className={style.modalCloseButton}>
                     <IconContext.Provider value={{ className: style.modalCloseIcon }}>
                         <IoClose title={'Close modal'} />
                     </IconContext.Provider>
