@@ -13,7 +13,7 @@ import loadingSpinner from '../assets/spinner.gif'
 export function UserCard (props) {
     const [open, setOpen] = useState(false)
 
-    const { user, onUpdate, onDelete, isLoading, handleUsersUpdate } = props;
+    const { user, onDelete, isLoading, handleUsersUpdate } = props;
     
     if (isLoading.active && isLoading.id === user.id) {
         return (
@@ -38,7 +38,6 @@ export function UserCard (props) {
                         <Dialog.Trigger asChild>
                             <button>
                                 <IoPencil 
-                                    onClick={() => onUpdate(user.id)}
                                     title={'Update'}
                                 />
                             </button>
