@@ -8,6 +8,9 @@ import style from './UsersManagement.module.css'
 import { Header } from '../components/Header'
 import { UserCard } from '../components/UserCard'
 
+import loadingSpinner from '../assets/spinner.gif'
+import emptyState from '../assets/empty-state.png'
+
 const IS_DEV_ENV = true
 
 const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
@@ -16,7 +19,7 @@ export const UsersManagement = () => {
     const navigate = useNavigate();
 
     const [users, setUsers] = useState([])
-    const [isLoading, setIsLoading] = useState({active: false, id: undefined});
+    const [isLoading, setIsLoading] = useState({ active: false, id: undefined });
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('loggedUser'))
@@ -27,6 +30,8 @@ export const UsersManagement = () => {
     }, [])
 
     function getAllUsers() {
+        setIsLoading({ active: true })
+
         axios.get(`${baseUrl}/users`)
             .then((allUsers) => {
                 setUsers(allUsers.data)
@@ -35,10 +40,9 @@ export const UsersManagement = () => {
                 console.error(error)
                 alert('There was an error on getting users. Try again.')
             })
-    }
-
-    const updateUser = (userId) => {
-        console.log(`Update user ${userId}`)
+            .finally(() => {
+                setIsLoading({ active: false })
+            })
     }
 
   const deleteUser = (userId) => {
@@ -73,15 +77,17 @@ export const UsersManagement = () => {
                 <h2 className={style.pageTitle}>Users Management</h2>
 
                 <div className={style.usersList}>
+                    { isLoading.active && <div className={style.loadingState}>
+                        <img src={loadingSpinner}/>
+                    </div> }
+
+                    { !isLoading.active && !users.length && <div className={style.emptyState}>
+                        <p className={style.emptyStateText}>No users found.</p>
+                        <img src={emptyState} alt="Empty state image" width="400px" />
+                    </div> }
+
                     { users.map((user) => {
-                        return <UserCard 
-                            key={user.id} 
-                            user={user} 
-                            onUpdate={updateUser} 
-                            onDelete={deleteUser} 
-                            isLoading={isLoading} 
-                            handleUsersUpdate={getAllUsers}
-                        />
+                        return <UserCard key={user.id} user={user} onDelete={deleteUser} isLoading={isLoading} />
                     }) }
                 </div>
             </div>

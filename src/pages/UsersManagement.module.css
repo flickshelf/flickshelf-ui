@@ -1,6 +1,8 @@
 .usersManagementGeneralContainer {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 70vw;
+    min-height: 76vh;
     margin: 40px auto;
     background-color: white;
     border-radius: 12px;
@@ -8,12 +10,26 @@
     text-align: center;
 }
 
-.pageTitle {}
-
 .usersList {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin-top: 16px;
+    flex-grow: 1;
+    height: auto;
+}
+
+.loadingState {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+}
+
+.emptyStateText {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 50px;
 }

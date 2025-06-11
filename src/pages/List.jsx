@@ -98,7 +98,7 @@ export function List() {
                 <img src={loadingSpinner}/>
             </div>}
 
-            { !isLoading.active && !series.length && <div className={style.emptyStateContainer}>
+            { !isLoading.active && series.length && <div className={style.emptyStateContainer}>
                 <p className={style.emptyStateText}>No series found. Add your first serie!</p>
                 <div className={style.emptyStateImage}>
                     <img src={emptyState} alt="Empty state image" width="400px" />
