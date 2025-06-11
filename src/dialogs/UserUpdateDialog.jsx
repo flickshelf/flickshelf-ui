@@ -13,7 +13,7 @@ import spinner from '../assets/white-button-spinner.gif'
 const IS_DEV_ENV = true
 const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
-function UserUpdateDialogComponent (props) {
+function UserUpdateDialogComponent (props, ref) {
     const { user, setOpen, handleUsersUpdate } = props
 
     const [userName, setUserName] = useState(user.name)
@@ -64,6 +64,7 @@ function UserUpdateDialogComponent (props) {
 
             <Dialog.Content className={style.modalContent}>
                 <Dialog.Title>User update</Dialog.Title>
+                <Dialog.Description></Dialog.Description>
                 
                 <div className={style.fieldsSection}>
                     <label className={style.label}>Name</label>
