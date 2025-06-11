@@ -8,7 +8,10 @@ import style from './UsersManagement.module.css'
 import { Header } from '../components/Header'
 import { UserCard } from '../components/UserCard'
 
-const IS_DEV_ENV = false
+import loadingSpinner from '../assets/spinner.gif'
+import emptyState from '../assets/empty-state.png'
+
+const IS_DEV_ENV = true
 
 const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
@@ -16,7 +19,7 @@ export const UsersManagement = () => {
     const navigate = useNavigate();
 
     const [users, setUsers] = useState([])
-    const [isLoading, setIsLoading] = useState({active: false, id: undefined});
+    const [isLoading, setIsLoading] = useState({ active: false, id: undefined });
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('loggedUser'))
@@ -27,6 +30,10 @@ export const UsersManagement = () => {
     }, [])
 
     function getAllUsers() {
+        setUsers([])
+
+        setIsLoading({ active: true })
+
         axios.get(`${baseUrl}/users`)
             .then((allUsers) => {
                 setUsers(allUsers.data)
@@ -35,10 +42,9 @@ export const UsersManagement = () => {
                 console.error(error)
                 alert('There was an error on getting users. Try again.')
             })
-    }
-
-    const updateUser = (userId) => {
-        console.log(`Update user ${userId}`)
+            .finally(() => {
+                setIsLoading({ active: false })
+            })
     }
 
   const deleteUser = (userId) => {
@@ -49,21 +55,21 @@ export const UsersManagement = () => {
 
         axios.delete(`${baseUrl}/users/${userId}`)
             .then(successDeleteUser)
-            .catch(errorDeleteUser)
-            .finally(() => {
-              setIsLoading({active: false, id: userId})
+            .catch(() => {
+                errorDeleteUser(userId)
             })
     }
   }
 
-  function successDeleteUser() {
-      alert(`User deleted successfully!`)
-      getAllUsers()
-  }
+    function successDeleteUser() {
+        alert(`User deleted successfully!`)
+        getAllUsers()
+    }
 
-  function errorDeleteUser() {
-      alert(`There was an error while deleting this user. Try again.`)
-  }
+    function errorDeleteUser(userId) {
+        alert(`There was an error while deleting this user. Try again.`)
+        setIsLoading({ active: false, id: userId })
+    }
 
     return (
         <>
@@ -73,8 +79,23 @@ export const UsersManagement = () => {
                 <h2 className={style.pageTitle}>Users Management</h2>
 
                 <div className={style.usersList}>
+                    { isLoading.active && !isLoading.id && <div className={style.loadingState}>
+                        <img src={loadingSpinner}/>
+                    </div> }
+
+                    { !isLoading.active && !users.length && <div className={style.emptyState}>
+                        <p className={style.emptyStateText}>No users found.</p>
+                        <img src={emptyState} alt="Empty state image" width="400px" />
+                    </div> }
+
                     { users.map((user) => {
-                        return <UserCard key={user.id} user={user} onUpdate={updateUser} onDelete={deleteUser} isLoading={isLoading} />
+                        return <UserCard 
+                            key={user.id} 
+                            user={user} 
+                            onDelete={deleteUser} 
+                            isLoading={isLoading} 
+                            handleUsersUpdate={getAllUsers}
+                        />
                     }) }
                 </div>
             </div>
