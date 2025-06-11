@@ -30,6 +30,8 @@ export const UsersManagement = () => {
     }, [])
 
     function getAllUsers() {
+        setUsers([])
+
         setIsLoading({ active: true })
 
         axios.get(`${baseUrl}/users`)
@@ -53,21 +55,21 @@ export const UsersManagement = () => {
 
         axios.delete(`${baseUrl}/users/${userId}`)
             .then(successDeleteUser)
-            .catch(errorDeleteUser)
-            .finally(() => {
-              setIsLoading({active: false, id: userId})
+            .catch(() => {
+                errorDeleteUser(userId)
             })
     }
   }
 
-  function successDeleteUser() {
-      alert(`User deleted successfully!`)
-      getAllUsers()
-  }
+    function successDeleteUser() {
+        alert(`User deleted successfully!`)
+        getAllUsers()
+    }
 
-  function errorDeleteUser() {
-      alert(`There was an error while deleting this user. Try again.`)
-  }
+    function errorDeleteUser(userId) {
+        alert(`There was an error while deleting this user. Try again.`)
+        setIsLoading({ active: false, id: userId })
+    }
 
     return (
         <>
@@ -77,7 +79,7 @@ export const UsersManagement = () => {
                 <h2 className={style.pageTitle}>Users Management</h2>
 
                 <div className={style.usersList}>
-                    { isLoading.active && <div className={style.loadingState}>
+                    { isLoading.active && !isLoading.id && <div className={style.loadingState}>
                         <img src={loadingSpinner}/>
                     </div> }
 
@@ -87,7 +89,13 @@ export const UsersManagement = () => {
                     </div> }
 
                     { users.map((user) => {
-                        return <UserCard key={user.id} user={user} onDelete={deleteUser} isLoading={isLoading} />
+                        return <UserCard 
+                            key={user.id} 
+                            user={user} 
+                            onDelete={deleteUser} 
+                            isLoading={isLoading} 
+                            handleUsersUpdate={getAllUsers}
+                        />
                     }) }
                 </div>
             </div>
