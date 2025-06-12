@@ -11,7 +11,7 @@ import { UserCard } from '../components/UserCard'
 import loadingSpinner from '../assets/spinner.gif'
 import emptyState from '../assets/empty-state.png'
 
-const IS_DEV_ENV = true
+const IS_DEV_ENV = false
 
 const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
