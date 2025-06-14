@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import spinner from '../assets/white-button-spinner.gif'
 
-const IS_DEV_ENV = true
+const IS_DEV_ENV = false
 
 const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
 
