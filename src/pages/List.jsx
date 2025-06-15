@@ -15,6 +15,9 @@ import { IoClose } from "react-icons/io5";
 import { Header } from '../components/Header.jsx';
 import { Card } from '../components/Card.jsx';
 
+const IS_PROD_ENV = import.meta.env.VITE_ENV === 'prod'
+const baseUrl = IS_PROD_ENV ? 'https://api.flickshelf.com' : 'http://localhost:3333'
+
 export function List() {
     const navigate = useNavigate()
     const [series, setSeries] = useState([]);
@@ -23,7 +26,7 @@ export function List() {
     let loggedUser = null
 
     const getSeries = () => {
-        return axios.get(`https://api.flickshelf.com/${loggedUser.id}/series`)
+        return axios.get(`${baseUrl}/${loggedUser.id}/series`)
     }
 
     function handleGetSeries() {
@@ -72,7 +75,7 @@ export function List() {
         if (hasConfirm) {
             setIsLoading({ active: true, cardId: serieId })
 
-            axios.delete(`https://api.flickshelf.com/serie/${serieId}`)
+            axios.delete(`${baseUrl}/serie/${serieId}`)
                 .then(() => {
                     getSeries().then((returnedSeries) => {
                         setSeries(returnedSeries.data)
@@ -86,9 +89,7 @@ export function List() {
         }
     }
 
-    const modalContent = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-        ? 'http://localhost:5173/update-serie' 
-        : 'https://flickshelf.com/update-serie'
+    const modalContent = IS_PROD_ENV ? 'https://flickshelf.com/update-serie' : 'http://localhost:5173/update-serie'
 
     return (
         <>
