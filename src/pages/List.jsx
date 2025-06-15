@@ -89,9 +89,7 @@ export function List() {
         }
     }
 
-    const modalContent = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-        ? 'http://localhost:5173/update-serie' 
-        : 'https://flickshelf.com/update-serie'
+    const modalContent = IS_PROD_ENV ? 'https://flickshelf.com/update-serie' : 'http://localhost:5173/update-serie'
 
     return (
         <>
