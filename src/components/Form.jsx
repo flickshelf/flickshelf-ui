@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import style from './Form.module.css';
-
 import axios from 'axios';
+
+import style from './Form.module.css';
 
 import spinner from '../assets/white-button-spinner.gif'
 
-const api = 'https://api.flickshelf.com';
+const IS_PROD_ENV = import.meta.env.VITE_ENV === 'prod'
+const baseUrl = IS_PROD_ENV ? 'https://api.flickshelf.com' : 'http://localhost:3333'
 
 export function Form(props) {
     const { isCreating = true } = props;
@@ -27,7 +28,7 @@ export function Form(props) {
     }
 
     async function getSerieById(serieId) {
-        const serie = await axios.get(`${api}/series/${serieId}`)
+        const serie = await axios.get(`${baseUrl}/series/${serieId}`)
         return serie;
     }
 
@@ -65,7 +66,7 @@ export function Form(props) {
 
         setIsLoading(true)
 
-        axios.post(`${api}/series`, {
+        axios.post(`${baseUrl}/series`, {
                 ownerId,
                 serieTitle,
                 serieGenre,
@@ -93,7 +94,7 @@ export function Form(props) {
     const update = () => {
         setIsLoading(true)
 
-        axios.put(`${api}/serie/${serieId}`, {
+        axios.put(`${baseUrl}/serie/${serieId}`, {
             serieTitle,
             serieGenre, 
             serieSeasons, 

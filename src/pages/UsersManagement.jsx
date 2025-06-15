@@ -11,9 +11,8 @@ import { UserCard } from '../components/UserCard'
 import loadingSpinner from '../assets/spinner.gif'
 import emptyState from '../assets/empty-state.png'
 
-const IS_DEV_ENV = false
-
-const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
+const IS_PROD_ENV = import.meta.env.VITE_ENV === 'prod'
+const baseUrl = IS_PROD_ENV ? 'https://api.flickshelf.com' : 'http://localhost:3333'
 
 export const UsersManagement = () => {
     const navigate = useNavigate();

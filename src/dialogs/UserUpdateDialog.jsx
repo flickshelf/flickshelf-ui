@@ -10,8 +10,8 @@ import style from './UserUpdateDialog.module.css';
 
 import spinner from '../assets/white-button-spinner.gif'
 
-const IS_DEV_ENV = true
-const baseUrl = IS_DEV_ENV ? 'http://localhost:3333' : 'https://api.flickshelf.com'
+const IS_PROD_ENV = import.meta.env.VITE_ENV === 'prod'
+const baseUrl = IS_PROD_ENV ? 'https://api.flickshelf.com' : 'http://localhost:3333'
 
 function UserUpdateDialogComponent (props, ref) {
     const { user, setOpen, handleUsersUpdate } = props
