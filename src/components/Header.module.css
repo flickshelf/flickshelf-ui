@@ -108,3 +108,11 @@ header .darkBlueHeader li {
     width: 32px;
     height: 32px;
 }
+
+.anniversaryBadge {
+    width: 110px;
+    position: absolute;
+    rotate: -15deg;
+    left: 96px;
+    top: 40px;
+}

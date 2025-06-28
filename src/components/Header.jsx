@@ -6,6 +6,7 @@ import { IoLogOutOutline } from 'react-icons/io5';
 import style from "./Header.module.css"
 
 import logo from '../assets/temp-logo.png'
+import anniversaryBadge from '../assets/1st-year-anniversary.png'
 
 export function Header() {
 	const navigate = useNavigate()
@@ -44,6 +45,7 @@ export function Header() {
 			<a onClick={openRegisterPage}>
 				<img className={style.logotipo} src={logo} alt="FlickShelf logo" onClick={handleClickLogo}/>
 			</a>
+			<img src={anniversaryBadge} alt="1st year anniversary badge" className={style.anniversaryBadge} />
 			<div className={style.darkBlueHeader}>
 				<nav id="navigation">
 					<ul>
