@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 16px;
-    padding: 16px 32px;    
+    padding: 40px 32px;    
 }
 
 .serieItem {
