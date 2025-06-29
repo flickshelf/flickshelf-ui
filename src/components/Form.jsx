@@ -19,6 +19,7 @@ export function Form(props) {
     const [serieSeasons, setSerieSeasons] = useState('')
     const [serieReleaseYear, setSerieReleaseYear] = useState('')
     const [serieSynopsis, setSerieSynopsis] = useState('')
+    const [seriePosterUrl, setSeriePosterUrl] = useState('')
 
     const serieId = window.name;
 
@@ -47,8 +48,6 @@ export function Form(props) {
         }
     }, [])
 
-    function saveFilledValues() {}
-
     const create = () => {
         if (
             serieTitle === "" 
@@ -73,6 +72,7 @@ export function Form(props) {
                 serieSeasons,
                 serieReleaseYear,
                 serieSynopsis,
+                seriePosterUrl,
             })
             .then(() => {
                 alert(`Serie ${serieTitle} created successfully!`)
@@ -115,6 +115,22 @@ export function Form(props) {
         parent.location.reload()
     }
 
+    const searchSerieFromExternalAPI = () => {
+        if (!serieTitle || serieTitle?.length < 2) return
+
+        axios.get(`${baseUrl}/serie/externalApi?search=${serieTitle}`)
+            .then(handleSuccessSearchSerieFromExternalAPI)
+            .catch(handleErrorSearchSerieFromExternalAPI)
+    }
+
+    const handleSuccessSearchSerieFromExternalAPI = (serie) => {
+        console.log(serie.data)
+    }
+
+    const handleErrorSearchSerieFromExternalAPI = (err) => {
+        console.error(err)
+    }
+
     const onChangeTitle = (event) => {
         const newTitle = event.target.value
         setSerieTitle(newTitle)
@@ -150,7 +166,7 @@ export function Form(props) {
                     value={serieTitle}
                     onChange={onChangeTitle}
                     placeholder="Type series title..."
-                    onBlur={saveFilledValues()}
+                    onBlur={searchSerieFromExternalAPI}
                 />
                 
                 <label htmlFor="serie-genre">Genre</label>
@@ -169,7 +185,6 @@ export function Form(props) {
                     value={serieSeasons}
                     onChange={onChangeSeasons}
                     placeholder="Total seasons number"
-                    onBlur={saveFilledValues()}
                     min="1"
                     max="50"
                 />
@@ -180,7 +195,6 @@ export function Form(props) {
                     value={serieReleaseYear}
                     onChange={onChangeReleaseYear}
                     placeholder="Serie release year"
-                    onBlur={saveFilledValues()}
                     min="1957"
                     max="2024"
                 />
@@ -192,7 +206,6 @@ export function Form(props) {
                     value={serieSynopsis}
                     onChange={onChangeSerieSynopsis}
                     placeholder="Type serie synopsis..."
-                    onBlur={saveFilledValues()}
                 ></textarea>
 
                 <button className={`${style.createButton} ${isLoading ? style.disabled : ''}`} type="button" onClick={isCreating ? create : update}>
