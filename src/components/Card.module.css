@@ -1,16 +1,29 @@
 .serieItem {
-    border: 4px double #416289;
+    border: 1px solid transparent;
     border-radius: 12px;
     background-color: white;
     padding: 4px 8px;
-    height: 280px;
+    height: 320px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.serieItem:hover {
+    border: 1px solid var(--bg-primary-white);
+    outline: 4px double #416289;
+    cursor: pointer;
 }
 
 .serieTitle {
-    text-align: center;
+    color: white;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1rem;
+    font-size: 1.25rem;
 }
 
 .synopsisDiv {

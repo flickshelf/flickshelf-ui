@@ -379,3 +379,12 @@
         width: 40%;
     }
 }
+
+.anniversaryBadge {
+    width: 110px;
+    position: absolute;
+    rotate: -15deg;
+    left: -44px;
+    top: -44px;
+    z-index: 100;
+}

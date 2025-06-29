@@ -7,6 +7,7 @@ import { IoLogoFacebook, IoLogoGoogle, IoLogoLinkedin } from "react-icons/io5";
 import axios from 'axios';
 
 import spinner from '../assets/white-button-spinner.gif'
+import anniversaryBadge from '../assets/1st-year-anniversary.png'
 
 const IS_PROD_ENV = import.meta.env.VITE_ENV === 'prod'
 const baseUrl = IS_PROD_ENV ? 'https://api.flickshelf.com' : 'http://localhost:3333'
@@ -221,6 +222,8 @@ export function Login() {
             </div>
     
             <div className={`${style.content} ${style.secondContent}`}>
+    			<img src={anniversaryBadge} alt="1st year anniversary badge" className={style.anniversaryBadge} />
+
                 <div className={style.firstColumn}>
                     <h2 className={`${style.title} ${style.titlePrimary}`}>Hello, friend!</h2>
                     <p className={style.descriptionPrimary}>Enter your personal details</p>
