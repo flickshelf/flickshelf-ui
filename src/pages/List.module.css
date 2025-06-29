@@ -1,8 +1,13 @@
 .websiteContent {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 16px;
-    padding: 40px 32px;    
+    padding: 0.5rem 2rem;    
+}
+
+.pageTitle {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 40px 2rem 0.5rem;
 }
 
 .serieItem {

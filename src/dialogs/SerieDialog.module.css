@@ -1,0 +1,52 @@
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modalContent {
+    width: 60rem;
+    height: 50rem;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.serieInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+}
+
+.serieInfo .cardButtons * {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.modalCloseButton {
+    background-color: transparent;
+    border: none;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.modalCloseIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.synopsisDiv p {
+    text-align: justify;
+}
