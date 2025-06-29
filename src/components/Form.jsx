@@ -162,6 +162,7 @@ export function Form(props) {
                 <h2 className={style.title}>{translations.title}</h2>
                 <label htmlFor="serie-title">Title</label>
                 <input 
+                    id="serie-title"
                     type="text" 
                     value={serieTitle}
                     onChange={onChangeTitle}
@@ -170,7 +171,7 @@ export function Form(props) {
                 />
                 
                 <label htmlFor="serie-genre">Genre</label>
-                <select value={serieGenre} onChange={onChangeSerieGenre}>
+                <select id="serie-genre" value={serieGenre} onChange={onChangeSerieGenre}>
                     <option value="">Select genre</option>
                     <option value="comedy">Comedy</option>
                     <option value="sitcom">Sitcom</option>
@@ -181,6 +182,7 @@ export function Form(props) {
     
                 <label htmlFor="serie-seasons">Seasons</label>
                 <input 
+                    id="serie-seasons"
                     type="number" 
                     value={serieSeasons}
                     onChange={onChangeSeasons}
@@ -191,6 +193,7 @@ export function Form(props) {
     
                 <label htmlFor="serie-release-year">Release year</label>
                 <input 
+                    id="serie-release-year"
                     type="number" 
                     value={serieReleaseYear}
                     onChange={onChangeReleaseYear}
