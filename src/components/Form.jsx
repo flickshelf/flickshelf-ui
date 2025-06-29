@@ -124,11 +124,19 @@ export function Form(props) {
     }
 
     const handleSuccessSearchSerieFromExternalAPI = (serie) => {
-        console.log(serie.data)
+        fillFormFieldsWithSearchedSerie(serie.data)
     }
 
     const handleErrorSearchSerieFromExternalAPI = (err) => {
         console.error(err)
+    }
+
+    const fillFormFieldsWithSearchedSerie = (serie) => {
+        setSerieGenre(serie?.genres?.[0]?.name.toLowerCase())
+        setSerieSeasons(serie?.number_of_seasons)
+        setSerieReleaseYear(serie?.first_air_date.substring(0,4))
+        setSerieSynopsis(serie?.overview)
+        setSeriePosterUrl(serie?.poster_path)
     }
 
     const onChangeTitle = (event) => {
