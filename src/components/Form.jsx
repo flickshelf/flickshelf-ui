@@ -100,6 +100,7 @@ export function Form(props) {
             serieSeasons, 
             serieReleaseYear, 
             serieSynopsis,
+            seriePosterUrl,
         }).then(() => {
             alert(`Serie ${serieTitle} updated successfully!`)
 
