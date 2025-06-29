@@ -9,27 +9,39 @@ import loadingSpinner from '../assets/spinner.gif';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+import * as Dialog from '@radix-ui/react-dialog';
+
 import { IconContext } from "react-icons";
 import { IoClose } from "react-icons/io5";
 
 import { Header } from '../components/Header.jsx';
 import { Card } from '../components/Card.jsx';
 
+import { SerieDialog } from '../dialogs/SerieDialog.jsx';
+
 const IS_PROD_ENV = import.meta.env.VITE_ENV === 'prod'
 const baseUrl = IS_PROD_ENV ? 'https://api.flickshelf.com' : 'http://localhost:3333'
 
 export function List() {
     const navigate = useNavigate()
+
+    const [open, setOpen] = useState(false);
+    const [selectedSerie, setSelectedSerie] = useState({});
+
     const [series, setSeries] = useState([]);
     const [isLoading, setIsLoading] = useState({ active: false, cardId: undefined });
     const [isModalOpen, setIsModalOpen] = useState({ active: false, serieId: undefined });
     let loggedUser = null
 
     const getSeries = () => {
+        loggedUser = JSON.parse(localStorage.getItem('loggedUser'))
+
         return axios.get(`${baseUrl}/${loggedUser.id}/series`)
     }
 
     function handleGetSeries() {
+        loggedUser = JSON.parse(localStorage.getItem('loggedUser'))
+        
         if (!loggedUser) return
 
         setIsLoading({active: true})
@@ -65,6 +77,7 @@ export function List() {
     }
 
     function handleEditClick(serieId) {
+        setOpen(false)
         setSeries([])
         setIsModalOpen({ active: true, serieId });
     }
@@ -74,6 +87,7 @@ export function List() {
 
         if (hasConfirm) {
             setIsLoading({ active: true, cardId: serieId })
+            setOpen(false)
 
             axios.delete(`${baseUrl}/serie/${serieId}`)
                 .then(() => {
@@ -87,6 +101,11 @@ export function List() {
                     setIsLoading({ active: false, cardId: undefined })
                 })
         }
+    }
+
+    const onCardClick = (serie) => {
+        setSelectedSerie(serie)
+        setOpen(true)
     }
 
     const modalContent = IS_PROD_ENV ? 'https://flickshelf.com/update-serie' : 'http://localhost:5173/update-serie'
@@ -106,18 +125,28 @@ export function List() {
                 </div>
             </div>}
         
+            { !isLoading.active && series.length && <h2 className={style.pageTitle}>My List</h2>}
             <div className={style.websiteContent}>
                 { series.map((serie) => {
                     return (
                         <Card 
                             key={serie.id} 
                             serie={serie}
-                            onUpdate={handleEditClick}
-                            onDelete={handleTrashClick}
                             isLoading={isLoading}
+                            onClick={() => onCardClick(serie)}
                         />
                     )
                 }) }
+
+                <Dialog.Root open={open} onOpenChange={setOpen}>
+                <Dialog.Portal>
+                        <SerieDialog
+                            serie={selectedSerie}
+                            onUpdate={handleEditClick}
+                            onDelete={handleTrashClick}
+                        ></SerieDialog>
+                    </Dialog.Portal>
+                </Dialog.Root>
             </div>
 
             { isModalOpen.active && <div className={style.editSerieModal}>
