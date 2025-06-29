@@ -18,10 +18,20 @@
 
 .darkFooter {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     gap: 2px;
     padding: 2px 110px; 
+}
+
+.darkFooter .emailContainer {
+    display: flex;
+}
+
+.aboutContainer {
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .mailIcon {
@@ -33,7 +43,7 @@
     text-decoration: none;
 }
 
-.darkFooter a:hover {
+.darkFooter .emailContainer :hover {
     text-decoration: underline;
 }
 

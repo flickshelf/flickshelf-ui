@@ -1,10 +1,18 @@
 import style from '../components/Footer.module.css'
 
+import { useNavigate } from 'react-router-dom'
+
 import { IconContext } from "react-icons";
 import { IoLogoInstagram, IoLogoTwitter, IoLogoFacebook } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 
 export function Footer() {
+    const navigate = useNavigate()
+
+    const openAboutPage = () => {
+        navigate('/about')
+    }
+
     return (
         <footer>
             <div className={style.lightBlueFooter}>
@@ -36,10 +44,13 @@ export function Footer() {
             </div>
             <div className={style.darkBlueFooter}>
                 <div className={style.darkFooter}>
-                    <IconContext.Provider value={{ className: style.footerMailIcon }}>
-                        <MdEmail />
-                    </IconContext.Provider>
-                    <p><a href="mailto:contact@seriescrud.com.br">contact@flickshelf.com</a></p>
+                    <div className={style.emailContainer}>
+                        <IconContext.Provider value={{ className: style.footerMailIcon }}>
+                            <MdEmail />
+                        </IconContext.Provider>
+                        <p><a href="mailto:contact@seriescrud.com.br">contact@flickshelf.com</a></p>
+                    </div>
+                    <a onClick={openAboutPage} className={style.aboutContainer}>About</a>
                 </div>
             </div>
         </footer>
