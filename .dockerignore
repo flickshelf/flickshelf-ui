@@ -2,3 +2,5 @@ node_modules
 README.md
 eslint.config.js
 .DS_Store
+.env
+.env.example
