@@ -1,0 +1,8 @@
+node_modules
+README.md
+eslint.config.js
+.DS_Store
+.git
+.gitignore
+.env
+.env.example
