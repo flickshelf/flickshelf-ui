@@ -16,7 +16,8 @@ App for series watching management, where will be possible to create series, inf
 - Serie creation;
 - Serie update;
 - Serie deletion;
-- Series list.
+- Series list;
+- Integration with TMDB API for series info and covers.
 
 ### Initial series properties:
 - Title;
@@ -27,12 +28,16 @@ App for series watching management, where will be possible to create series, inf
 
 ### Utilized techs:
 - ReactJS;
+- Node.js;
+- PostgreSQL;
+- Docker;
 - HTML;
 - CSS;
 - JavaScript;
-- Node.js;
-- Axios;
-- PostgreSQL.
+- Axios.
 
 ### Project management on Trello: 
 https://trello.com/b/GVvbCHN5/flickshelf
+
+### Github project repo:
+https://github.com/flickshelf
