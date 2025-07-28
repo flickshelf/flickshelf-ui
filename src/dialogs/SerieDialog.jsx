@@ -41,6 +41,12 @@ function SerieDialogComponent (props, ref) {
         return genreToDisplay
     }
 
+    const getSerieCover = () => {
+        if (serie.coverUrl) {
+            return `https://image.tmdb.org/t/p/original/${serie.coverUrl}`
+        }
+    } 
+
     return (
         <>
             <Dialog.Overlay className={style.modalOverlay} />
@@ -49,8 +55,8 @@ function SerieDialogComponent (props, ref) {
                 <Dialog.Title></Dialog.Title>
                 <Dialog.Description></Dialog.Description>
 
-                <div className={style.serieCover}>
-                    <img src="" alt="" />
+                <div className={`${style.serieCover} ${serie.coverUrl ? style.hasCover : '' }`}>
+                    <img src={getSerieCover()} alt="" />
                 </div>
                 <div className={style.serieInfo}>
                     <div className={style.editableInfo}>
