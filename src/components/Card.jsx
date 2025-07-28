@@ -17,13 +17,19 @@ export function Card(props) {
       )
     }
 
+    const getCardStyle = () => {
+      if (!serie.coverUrl) {
+        return { backgroundColor: 'rgba(0, 0, 0, 0.6)' }
+      }
+
+      return { backgroundImage: `url(${posterBasePath}${serie.posterUrl})` }
+    }
+
     return (
-        <div 
-          className={style.serieItem} 
-          style={{ backgroundImage: `url(${posterBasePath}${serie.posterUrl})` }}
-          onClick={onClick}
-        >
-            <h3 className={style.serieTitle}>{serie.title}</h3>
-        </div>
+      <div 
+        className={style.serieItem} 
+        style={getCardStyle()}
+        onClick={onClick}
+      ></div>
     )
 }
