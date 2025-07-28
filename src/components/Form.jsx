@@ -20,6 +20,7 @@ export function Form(props) {
     const [serieReleaseYear, setSerieReleaseYear] = useState('')
     const [serieSynopsis, setSerieSynopsis] = useState('')
     const [seriePosterUrl, setSeriePosterUrl] = useState('')
+    const [serieCoverUrl, setSerieCoverUrl] = useState('')
 
     const serieId = window.name;
 
@@ -73,6 +74,7 @@ export function Form(props) {
                 serieReleaseYear,
                 serieSynopsis,
                 seriePosterUrl,
+                serieCoverUrl,
             })
             .then(() => {
                 alert(`Serie ${serieTitle} created successfully!`)
@@ -101,6 +103,7 @@ export function Form(props) {
             serieReleaseYear, 
             serieSynopsis,
             seriePosterUrl,
+            serieCoverUrl,
         }).then(() => {
             alert(`Serie ${serieTitle} updated successfully!`)
 
@@ -138,6 +141,7 @@ export function Form(props) {
         setSerieReleaseYear(serie?.first_air_date.substring(0,4))
         setSerieSynopsis(serie?.overview)
         setSeriePosterUrl(serie?.poster_path)
+        setSerieCoverUrl(serie?.backdrop_path)
     }
 
     const onChangeTitle = (event) => {

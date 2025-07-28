@@ -47,26 +47,23 @@ export function Card(props) {
       )
     }
 
+    const getCardStyle = () => {
+      if (!serie.coverUrl) {
+        return { backgroundColor: 'rgba(0, 0, 0, 0.6)' }
+      }
+
+      return { backgroundImage: `url(${posterBasePath}${serie.posterUrl})` }
+    }
+
     return (
-        <div 
-          className={style.serieItem} 
-          style={{ backgroundImage: `url(${posterBasePath}${serie.posterUrl})` }}
-          onClick={onClick}
-        >
-            <h3 className={style.serieTitle}>{serie.title}</h3>
-
-            { (!serie.posterUrl || !posterBasePath) && 
-              <>
-                <h3 className={style.serieTitle}>{serie.title}</h3>
-                <p>Genre: {handleSerieGenre(serie.genre)}</p>
-                <p>Seasons: {serie.seasons}</p>
-                <p>Release year: {serie.release_year}</p>
-
-                <div className={style.synopsisDiv}>
-                    <p>Synopsis: {serie.synopsis}</p>
-                </div>
-              </>
-            }
-        </div>
+      <div 
+        className={style.serieItem} 
+        style={getCardStyle()}
+        onClick={onClick}
+      >
+        { (!serie.posterUrl || !posterBasePath) && 
+          <h3 className={style.serieTitle}>{serie.title}</h3>
+        }
+      </div>
     )
 }
