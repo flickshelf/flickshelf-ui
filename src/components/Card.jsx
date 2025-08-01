@@ -48,7 +48,7 @@ export function Card(props) {
     }
 
     const getCardStyle = () => {
-      if (!serie.coverUrl) {
+      if (!serie.posterUrl) {
         return { backgroundColor: 'rgba(0, 0, 0, 0.6)' }
       }
 
