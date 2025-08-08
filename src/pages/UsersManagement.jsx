@@ -97,6 +97,13 @@ export const UsersManagement = () => {
                         />
                     }) }
                 </div>
+                <div>
+                    <iframe 
+                        src="https://app.deskfy.io" 
+                        style={{ marginTop: '1rem',  width: '1366px', height: '768px' }} 
+                        frameBorder="0"
+                    ></iframe>
+                </div>
             </div>
         </>
     )
