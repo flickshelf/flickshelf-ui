@@ -102,7 +102,6 @@ export const UsersManagement = () => {
                         src="https://app.deskfy.io" 
                         style={{ marginTop: '1rem',  width: '1366px', height: '768px' }} 
                         frameBorder="0"
-                        sandbox="allow-scripts allow-same-origin allow-forms"
                     ></iframe>
                 </div>
             </div>
