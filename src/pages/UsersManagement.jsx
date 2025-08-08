@@ -18,6 +18,7 @@ export const UsersManagement = () => {
     const navigate = useNavigate();
 
     const [users, setUsers] = useState([])
+    const [token, setToken] = useState([])
     const [isLoading, setIsLoading] = useState({ active: false, id: undefined });
 
     useEffect(() => {
@@ -26,21 +27,7 @@ export const UsersManagement = () => {
         if (user.role !== 'ADMIN') return navigate('/login')
 
         getAllUsers()
-        getJWTToken(user)
-
     }, [])
-
-    function getJWTToken (user) {
-        if (user.id === '1') {
-            axios.post(import.meta.env.VITE_INT_API, {
-                email: import.meta.env.VITE_INT_EMAIL
-            }, {
-                headers: {
-                    "x-api-key": import.meta.env.VITE_X_API_KEY
-                }
-            })
-        }
-    }
 
     function getAllUsers() {
         setUsers([])
@@ -49,7 +36,8 @@ export const UsersManagement = () => {
 
         axios.get(`${baseUrl}/users`)
             .then((allUsers) => {
-                setUsers(allUsers.data)
+                setUsers(allUsers.data.users)
+                setToken(allUsers.data.token)
             })
             .catch((error) => {
                 console.error(error)
@@ -112,12 +100,12 @@ export const UsersManagement = () => {
                     }) }
                 </div>
                 <div>
-                    {/* <iframe 
-                        src="http://localhost:9000/#!/?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJnYWJyaWVsLmtsZWluQGRlc2tmeS5pbyIsIm5hbWUiOiJHYWJyaWVsIEtsZWluIDEiLCJyb2xlIjoiQURNSU5JU1RSQVRPUiIsImludml0ZSI6ZmFsc2UsImVudiI6IkRFU0tUT1AiLCJ2ZXJzaW9uIjoiMyIsImlhdCI6MTc1NDY4OTE2MCwiZXhwIjoxNzU0NzMyMzYwfQ.9SNF8YfB7yKkbMKDwtCLQLwkTaezH_UJ0msrk8mIchM" 
+                    <iframe 
+                        src={`https://app.deskfy.io/home?jwt=${token}`}
                         style={{ marginTop: '1rem',  width: '1366px', height: '768px' }} 
                         frameBorder="0"
                         sandbox="allow-scripts allow-same-origin allow-forms"
-                    ></iframe> */}
+                    ></iframe>
                 </div>
             </div>
         </>
