@@ -74,10 +74,10 @@ export const UsersManagement = () => {
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
 
             <div className={style.usersManagementGeneralContainer}>
-                <h2 className={style.pageTitle}>Users Management</h2>
+                <h2 className={style.pageTitle}>Testing embed</h2>
 
                 <div className={style.usersList}>
                     { isLoading.active && !isLoading.id && <div className={style.loadingState}>
@@ -89,7 +89,7 @@ export const UsersManagement = () => {
                         <img src={emptyState} alt="Empty state image" width="400px" />
                     </div> }
 
-                    { users.map((user) => {
+                    {/* { users.map((user) => {
                         return <UserCard 
                             key={user.id} 
                             user={user} 
@@ -97,7 +97,7 @@ export const UsersManagement = () => {
                             isLoading={isLoading} 
                             handleUsersUpdate={getAllUsers}
                         />
-                    }) }
+                    }) } */}
                 </div>
 
                 <iframe 
