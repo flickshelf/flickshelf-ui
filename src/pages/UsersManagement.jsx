@@ -102,7 +102,7 @@ export const UsersManagement = () => {
 
                 <iframe 
                     style={{ height: '1000px', marginTop: '1rem', border: '2px solid turquoise', padding: '4px' }}
-                    src={`https://qa.deskfy.io/posts?jwt=${token}`}
+                    src={`https://app.deskfy.io/posts?jwt=${token}`}
                     frameborder="0"
                     sandbox="allow-scripts allow-same-origin allow-forms"
                 ></iframe>
