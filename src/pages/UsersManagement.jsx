@@ -18,7 +18,6 @@ export const UsersManagement = () => {
     const navigate = useNavigate();
 
     const [users, setUsers] = useState([])
-    const [token, setToken] = useState('');
     const [isLoading, setIsLoading] = useState({ active: false, id: undefined });
 
     useEffect(() => {
@@ -36,8 +35,7 @@ export const UsersManagement = () => {
 
         axios.get(`${baseUrl}/users`)
             .then(allUsers => {
-                setUsers(allUsers.data.users)
-                setToken(allUsers.data.token)
+                setUsers(allUsers.data)
             })
             .catch((error) => {
                 console.error(error)
@@ -74,10 +72,10 @@ export const UsersManagement = () => {
 
     return (
         <>
-            {/* <Header /> */}
+            <Header />
 
             <div className={style.usersManagementGeneralContainer}>
-                <h2 className={style.pageTitle}>Testing embed</h2>
+                <h2 className={style.pageTitle}>Users management</h2>
 
                 <div className={style.usersList}>
                     { isLoading.active && !isLoading.id && <div className={style.loadingState}>
@@ -89,7 +87,7 @@ export const UsersManagement = () => {
                         <img src={emptyState} alt="Empty state image" width="400px" />
                     </div> }
 
-                    {/* { users.map((user) => {
+                    { users.map((user) => {
                         return <UserCard 
                             key={user.id} 
                             user={user} 
@@ -97,15 +95,8 @@ export const UsersManagement = () => {
                             isLoading={isLoading} 
                             handleUsersUpdate={getAllUsers}
                         />
-                    }) } */}
+                    }) }
                 </div>
-
-                <iframe 
-                    style={{ height: '1000px', marginTop: '1rem', border: '2px solid turquoise', padding: '4px' }}
-                    src={`https://app.deskfy.io/posts?jwt=${token}`}
-                    frameborder="0"
-                    sandbox="allow-scripts allow-same-origin allow-forms"
-                ></iframe>
             </div>
         </>
     )
