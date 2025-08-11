@@ -18,6 +18,7 @@ export const UsersManagement = () => {
     const navigate = useNavigate();
 
     const [users, setUsers] = useState([])
+    const [token, setToken] = useState('');
     const [isLoading, setIsLoading] = useState({ active: false, id: undefined });
 
     useEffect(() => {
@@ -34,8 +35,9 @@ export const UsersManagement = () => {
         setIsLoading({ active: true })
 
         axios.get(`${baseUrl}/users`)
-            .then((allUsers) => {
-                setUsers(allUsers.data)
+            .then(allUsers => {
+                setUsers(allUsers.data.users)
+                setToken(allUsers.data.token)
             })
             .catch((error) => {
                 console.error(error)
@@ -100,7 +102,7 @@ export const UsersManagement = () => {
 
                 <iframe 
                     style={{ height: '1000px', marginTop: '1rem', border: '2px solid turquoise', padding: '4px' }}
-                    src="https://qa.deskfy.io" 
+                    src={`https://qa.deskfy.io/posts?jwt=${token}`}
                     frameborder="0"
                     sandbox="allow-scripts allow-same-origin allow-forms"
                 ></iframe>
