@@ -97,6 +97,12 @@ export const UsersManagement = () => {
                         />
                     }) }
                 </div>
+
+                <iframe 
+                    style={{ height: '1000px', marginTop: '1rem', border: '2px solid turquoise', padding: '4px' }}
+                    src="https://qa.deskfy.io" 
+                    frameborder="0"
+                ></iframe>
             </div>
         </>
     )
