@@ -102,6 +102,7 @@ export const UsersManagement = () => {
                     style={{ height: '1000px', marginTop: '1rem', border: '2px solid turquoise', padding: '4px' }}
                     src="https://qa.deskfy.io" 
                     frameborder="0"
+                    sandbox="allow-scripts allow-same-origin allow-forms"
                 ></iframe>
             </div>
         </>
