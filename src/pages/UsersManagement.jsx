@@ -34,31 +34,30 @@ export const UsersManagement = () => {
         setIsLoading({ active: true })
 
         axios.get(`${baseUrl}/users`)
-            .then((allUsers) => {
+            .then(allUsers => {
                 setUsers(allUsers.data)
             })
-            .catch((error) => {
-                console.error(error)
-                alert('There was an error on getting users. Try again.')
+            .catch(err => {
+                alert(err.response.data)
             })
             .finally(() => {
                 setIsLoading({ active: false })
             })
     }
 
-  const deleteUser = (userId) => {
-    const userDidConfirm = confirm('Are you sure you want to delete this user?')
+    const deleteUser = (userId) => {
+        const userDidConfirm = confirm('Are you sure you want to delete this user?')
 
-    if (userDidConfirm) {
-        setIsLoading({active: true, id: userId})
+        if (userDidConfirm) {
+            setIsLoading({active: true, id: userId})
 
-        axios.delete(`${baseUrl}/users/${userId}`)
-            .then(successDeleteUser)
-            .catch(() => {
-                errorDeleteUser(userId)
-            })
+            axios.delete(`${baseUrl}/users/${userId}`)
+                .then(successDeleteUser)
+                .catch(() => {
+                    errorDeleteUser(userId)
+                })
     }
-  }
+    }
 
     function successDeleteUser() {
         alert(`User deleted successfully!`)
