@@ -109,8 +109,8 @@ export function Login() {
                 alert('[ERROR]: Invalid email or password. Try again.')
             }
         })
-        .catch((err) => {
-            console.error(err)
+        .catch(err => {
+            alert(err.response.data)
         })
         .finally(() => {
             setIsLoading(false)

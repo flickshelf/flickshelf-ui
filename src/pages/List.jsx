@@ -47,9 +47,12 @@ export function List() {
         setIsLoading({active: true})
 
         getSeries()
-            .then((returnedSeries) => {
+            .then(returnedSeries => {
                 setSeries(returnedSeries.data)
-            }).finally(() => {
+            }).catch(err => {
+                alert(err.response.data)
+            })
+            .finally(() => {
                 setIsLoading({active: false})
             }) 
     }
