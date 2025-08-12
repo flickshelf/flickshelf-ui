@@ -44,14 +44,14 @@ function UserUpdateDialogComponent (props, ref) {
             userEmail,
             userRole,
         })
-            .then((res) => {
+            .then(res => {
                 setOpen(false)
                 alert(`User ${userName} updated successfully!`)
 
                 handleUsersUpdate()
             })
-            .catch((err) => {
-                console.log('Error while updating user')
+            .catch(err => {
+                alert(err.response.data)
             })
             .finally(() => {
                 setIsLoading(false)
