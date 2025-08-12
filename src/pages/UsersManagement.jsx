@@ -53,8 +53,11 @@ export const UsersManagement = () => {
 
             axios.delete(`${baseUrl}/users/${userId}`)
                 .then(successDeleteUser)
-                .catch(() => {
-                    errorDeleteUser(userId)
+                .catch(err => {
+                    errorDeleteUser({ 
+                        err: err.response.data, 
+                        userId, 
+                    })
                 })
     }
     }
@@ -64,8 +67,10 @@ export const UsersManagement = () => {
         getAllUsers()
     }
 
-    function errorDeleteUser(userId) {
-        alert(`There was an error while deleting this user. Try again.`)
+    function errorDeleteUser(params) {
+        const { err, userId } = params;
+
+        alert(err)
         setIsLoading({ active: false, id: userId })
     }
 
