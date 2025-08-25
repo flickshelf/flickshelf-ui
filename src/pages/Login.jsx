@@ -64,8 +64,8 @@ export function Login() {
         }).then(() => {
             alert(`User ${signupName} created successfully!`)
             goToLoginSection()
-        }).catch(() => {
-            alert('There was an error. Try again.')
+        }).catch(err => {
+            alert(err.response.data)
         }).finally(() => {
             setIsLoading(false)
             setIsButtonDisabled(false)
