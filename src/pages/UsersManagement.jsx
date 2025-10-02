@@ -18,7 +18,6 @@ export const UsersManagement = () => {
     const navigate = useNavigate();
 
     const [users, setUsers] = useState([])
-    const [token, setToken] = useState([])
     const [isLoading, setIsLoading] = useState({ active: false, id: undefined });
 
     useEffect(() => {
@@ -36,9 +35,7 @@ export const UsersManagement = () => {
 
         axios.get(`${baseUrl}/users`)
             .then(allUsers => {
-                // setUsers(allUsers.data)
-                setUsers(allUsers.data.users)
-                setToken(allUsers.data.token)
+                setUsers(allUsers.data)
             })
             .catch(err => {
                 alert(err.response.data)
@@ -103,14 +100,6 @@ export const UsersManagement = () => {
                             handleUsersUpdate={getAllUsers}
                         />
                     }) }
-                </div>
-                <div>
-                    <iframe 
-                        src={`https://app.deskfy.io/home?jwt=${token}`}
-                        style={{ marginTop: '1rem',  width: '1366px', height: '768px' }} 
-                        frameBorder="0"
-                        sandbox="allow-scripts allow-same-origin allow-forms"
-                    ></iframe>
                 </div>
             </div>
         </>
