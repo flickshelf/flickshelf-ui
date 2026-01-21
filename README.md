@@ -2,6 +2,8 @@
 
 # Flickshelf UI V2 - React
 
+[![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/)
+
 ### Screenshots:
 ![serie-crud login screenshot](./src/assets/login.png)
 
