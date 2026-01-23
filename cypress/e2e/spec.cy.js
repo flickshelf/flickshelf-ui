@@ -1,6 +1,8 @@
+/* global describe, it, cy, Cypress */
+
 const inputs = {
-  emailLogin: process.env.EMAIL_E2E,
-  passwordLogin: process.env.PASSWORD_E2E,
+  emailLogin: Cypress.env('EMAIL_E2E'),
+  passwordLogin: Cypress.env('PASSWORD_E2E'),
 }
 
 describe('Login', () => {
@@ -18,7 +20,7 @@ describe('Login', () => {
     });
 
     it("And fill the password field", () => {
-      cy.get('#password-left').type(inputs.passwordLogin);
+      cy.get('#password-left').type("invalid password");
     });
 
     it("And click on sign in button", () => {
@@ -44,7 +46,7 @@ describe('Login', () => {
     });
 
     it("And fill the password field", () => {
-      cy.get('#password-left').type("invalid password");
+      cy.get('#password-left').type(inputs.passwordLogin);
     });
 
     it("And click on sign in button", () => {
