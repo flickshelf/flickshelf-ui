@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "cypress:web": "npx cypress open",
     "cypress:headless": "npx cypress run --browser chrome",
-    "sync": "dotenv -- sh -c \"aws s3 --profile \\$AWS_CLI_PROFILE sync ./dist \\$AWS_S3_BUCKET --paths '/*'\""
+    "sync": "dotenv -- sh -c \"aws s3 --profile \\$AWS_CLI_PROFILE sync ./dist s3://\\$AWS_S3_BUCKET_NAME/\""
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
